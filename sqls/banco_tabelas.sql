@@ -62,6 +62,7 @@ CREATE TABLE IF NOT EXISTS usuario (
   email varchar(50) NOT NULL,
   senha varchar(50) NOT NULL,
   perfis varchar(100) NOT NULL,
+  tema_palestra varchar(100) NOT NULL,
   PRIMARY KEY (id)
 )
-ENGINE = InnoDB  DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1 ;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
