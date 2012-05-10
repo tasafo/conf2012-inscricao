@@ -7,6 +7,7 @@ class UsuarioDAO extends AbstractDAO {
   public $email;
   public $senha;
   public $perfis;
+  public $tema_palestra;
 
   function __construct() {
     parent::__construct($this);
