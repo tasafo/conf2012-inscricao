@@ -1,0 +1,6 @@
+admin/pagtoimport/
+certificado/*.pdf
+util/constantes.php
+util/constantes_*.php
+util/pagseguro/retorno*.php
+util/pagseguro/*teste*.php

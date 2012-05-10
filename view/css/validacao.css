@@ -1,0 +1,29 @@
+.cmxform fieldset p.error label { color: red; }
+
+div.container {
+ 	background: url("../images/error.png") no-repeat scroll 10px 50% #fcf1f2;
+    border: 1px solid #E8AAAD;
+    color: #B50007;
+	font-size:11px;
+	margin-bottom:10px;
+}
+
+div.container ol li {
+    list-style-type: disc;
+    margin-left: 20px;
+    color: red;
+}
+
+div.container { display: none }
+
+.container label.error {
+    display: inline;
+}
+
+form.cmxform { width: 30em; }
+
+form.cmxform label.error {
+    display: block;
+    margin-left: 1em;
+    width: auto;
+}

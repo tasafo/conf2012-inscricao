@@ -1,0 +1,36 @@
+#DIV_Campo_Inscricao {
+	display: block;	//block (mostra) - none (esconde)
+}
+	
+
+body {
+	font-family:arial;
+	font-size:10pt;
+}
+
+
+h1 {
+	color:#FF0000;
+	text-align:center;
+	font-size:16pt;
+	font-family:arial;
+}
+
+table.bordasimples {border-collapse: collapse;}
+table.bordasimples tr td {border:0px solid #FF0000;}
+
+#div_periodo {
+	display:none;	
+}
+
+#div_tipo_inscricao {
+	display:none;	
+}
+
+#resultado {
+	display:none;
+}
+
+#div_botao {
+	display:none;
+}
