@@ -66,7 +66,7 @@ class EnviarEmail {
                 $mail->AddAttachment($anexo);
             
             $texto .= "
-                Queremos agradecer sua participa&ccedil&atilde;o no <b>" . NOME_EVENTO . "</b>.<br><br>
+                Queremos agradecer sua participa&ccedil;&atilde;o no <b>" . NOME_EVENTO . "</b>.<br><br>
                 Estamos enviando em anexo seu certificado e at&eacute; o pr&oacute;ximo evento.<br><br>";
         }
 
