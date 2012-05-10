@@ -5,6 +5,7 @@ class UsuarioDAO extends AbstractDAO {
   public $id;
   public $nome;
   public $email;
+  public $senha;
   public $perfis;
 
   function __construct() {
