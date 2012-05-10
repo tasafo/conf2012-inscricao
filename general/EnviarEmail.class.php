@@ -3,7 +3,7 @@ require_once dirname(__FILE__) . '/autoload.php';
 require_once dirname(__FILE__) . '/../util/constantes.php';
 
 class EnviarEmail {
-    public static function enviar($motivo, $tipo, $email, $nome, $id = 0, $complemento = "") {
+    public static function enviar($motivo, $tipo, $email, $nome, $id = 0, $complemento = "", $anexo = "") {
         if ($motivo == "cadastro")
             $titulo = "Cadastro realizado com sucesso";
         elseif ($motivo == "pagamento")
@@ -61,6 +61,13 @@ class EnviarEmail {
                     Caso tenha ocorrido algum problema, utilize o link abaixo para efetuar o pagamento e confirmar sua inscri&ccedil;&atilde;o.<br><br>
                     <a href='" . HOME_PAGE . "inscricao/view/pagamento$tipoCapitulado.php?id=" . $id . "'>" . HOME_PAGE . "inscricao/view/pagamento$tipoCapitulado.php?id=" . $id . "</a><br><br>";
             }
+        } elseif ($motivo == "envio_certificado") {
+            if (file_exists($anexo))
+                $mail->AddAttachment($anexo);
+            
+            $texto .= "
+                Queremos agradecer sua participa&ccedil&atilde;o no <b>" . NOME_EVENTO . "</b>.<br><br>
+                Estamos enviando em anexo seu certificado e at&eacute; o pr&oacute;ximo evento.<br><br>";
         }
 
         $texto .= "<br>
