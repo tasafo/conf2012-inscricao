@@ -13,6 +13,7 @@ $a_menu = array(
     'manutencaoInscritos' => 'Manutenção dos Inscritos',
     'importarPagamentos' => 'Importar Pagamentos do Pagseguro',
     'envioEmailAviso' => 'Enviar avisos por e-mail',
+    'envioCertificadoUsuarios' => 'Enviar Certificados para Usuários',
     'index' => 'Sair'
 );
 
