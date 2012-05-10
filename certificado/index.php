@@ -21,11 +21,18 @@ if (isset($_POST['email'])) {
         $pdf->setSourceFile($modelo);
         $tplIdx = $pdf->importPage(1);
         $pdf->useTemplate($tplIdx);
-        $pdf->SetFont('Arial', 'B', 26);
+        
+        $pdf->SetFont('Arial', '', 22);
         $pdf->SetTextColor(255, 255, 255);
-        $pdf->SetXY(59, 122);
-        $pdf->Write(0, ucwords(strtolower($nome)));
-
+        
+        $nome_convertido = utf8_encode($nome);
+          
+        $texto = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de participante.");
+        
+        $pdf->SetY("100");
+        $pdf->SetX("20");
+        $pdf->MultiCell(0, 9, $texto, 0, 1, 'J');
+        
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
         header("Content-Disposition: attachment; filename=$arquivo_destino");
