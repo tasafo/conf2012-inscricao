@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS tipo_inscricao ;
-
 CREATE  TABLE IF NOT EXISTS tipo_inscricao (
   id INT NOT NULL AUTO_INCREMENT ,
   descricao VARCHAR(45) NOT NULL ,
@@ -7,11 +5,7 @@ CREATE  TABLE IF NOT EXISTS tipo_inscricao (
   status CHAR(1) NOT NULL DEFAULT 'A',
   PRIMARY KEY (id) ,
   UNIQUE INDEX descricao_UNIQUE (descricao ASC) )
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci 
-AUTO_INCREMENT = 1;
-
-
-DROP TABLE IF EXISTS inscricao ;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
 
 CREATE  TABLE IF NOT EXISTS inscricao (
   id INT NOT NULL AUTO_INCREMENT ,
@@ -27,15 +21,11 @@ CREATE  TABLE IF NOT EXISTS inscricao (
   PRIMARY KEY (id) ,
   INDEX fk_inscricao_tipo_inscricao1 (id_tipo_inscricao ASC) ,
   CONSTRAINT fk_inscricao_tipo_inscricao1
-    FOREIGN KEY (id_tipo_inscricao )
-    REFERENCES tipo_inscricao (id )
+    FOREIGN KEY (id_tipo_inscricao)
+    REFERENCES tipo_inscricao (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci 
-AUTO_INCREMENT = 1;
-
-
-DROP TABLE IF EXISTS empresa ;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
 
 CREATE  TABLE IF NOT EXISTS empresa (
   id INT NOT NULL AUTO_INCREMENT ,
@@ -44,11 +34,7 @@ CREATE  TABLE IF NOT EXISTS empresa (
   email VARCHAR(45) NOT NULL ,
   cep CHAR(8) NOT NULL , 
   PRIMARY KEY (id) )
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci 
-AUTO_INCREMENT = 1;
-
-
-DROP TABLE IF EXISTS individual ;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
 
 CREATE  TABLE IF NOT EXISTS individual (
   id INT NOT NULL AUTO_INCREMENT ,
@@ -64,9 +50,18 @@ CREATE  TABLE IF NOT EXISTS individual (
   PRIMARY KEY (id) ,
   INDEX fk_individual_inscricao1 (id_inscricao ASC) ,
   CONSTRAINT fk_individual_inscricao1
-    FOREIGN KEY (id_inscricao )
-    REFERENCES inscricao (id )
+    FOREIGN KEY (id_inscricao)
+    REFERENCES inscricao (id)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci 
-AUTO_INCREMENT = 1;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS usuario (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  nome varchar(50) NOT NULL,
+  email varchar(50) NOT NULL,
+  senha varchar(50) NOT NULL,
+  perfis varchar(100) NOT NULL,
+  PRIMARY KEY (id)
+)
+ENGINE = InnoDB  DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1 ;
