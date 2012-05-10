@@ -1,4 +1,4 @@
-admin/pagtoimport/
+admin/tmp/
 certificado/*.pdf
 util/constantes.php
 util/constantes_*.php
