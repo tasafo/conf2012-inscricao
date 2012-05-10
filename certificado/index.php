@@ -13,7 +13,8 @@ if (isset($_POST['email'])) {
         
         require_once(dirname(__FILE__) . "/lib/fpdf/fpdf.php");
         require_once(dirname(__FILE__) . "/lib/fpdi/fpdi.php");
-        $modelo = "certificado_tasafoconf_template.pdf";
+        $modelo = "template_certificado.pdf";
+        $arquivo_destino = "Certificado " . NOME_EVENTO . ".pdf";
 
         $pdf = new FPDI();
         $pdf->AddPage('L');
@@ -27,11 +28,11 @@ if (isset($_POST['email'])) {
 
         header("Cache-Control: public");
         header("Content-Description: File Transfer");
-        header("Content-Disposition: attachment; filename=certificado_tasafoconf.pdf");
+        header("Content-Disposition: attachment; filename=$arquivo_destino");
         header("Content-Type: application/pdf");
         header("Content-Transfer-Encoding: binary");
 
-        $pdf->Output('certificado_tasafoconf.pdf', 'D');
+        $pdf->Output($arquivo_destino, 'D');
     }
 }
 ?>
