@@ -8,5 +8,7 @@ if (!$_SESSION['permissaoAdmin'] || $_SESSION['permissaoAdmin'] != 'ok' ) {
         window.location='index.php';
     </script>
 <?php
+} else {
+    echo "<b style='color: blue'>Usuário:</b> " . $_SESSION['logado']['nome'] . "<br><br>";
 }
 ?>
