@@ -20,10 +20,6 @@ define('HOME_PAGE', 'http://www.site.com.br/');
 define('EMAIL_COBRANCA', 'nome@mail.com.br');
 define('TOKEN', '');
 
-// Usuario e senha de acesso da area administrativa do sistema
-define('USUARIO_ADMIN', 'admin'); 
-define('SENHA_ADMIN', 'admin');
-
 // Desativa o link de inscricoes quando o numero de inscritos chegar a esse tamanho ou a data expirar
 define('QTD_MAXIMA_INSCRITOS', '200');
 define('DATA_FINAL_INSCRICAO', 'DD/MM/AAAA');
