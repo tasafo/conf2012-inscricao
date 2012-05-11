@@ -6,9 +6,19 @@ require_once '../util/constantes.php';
 $a_perfis = array('palestrante', 'organizador');
 
 $o_usuario = new UsuarioDAO();
-$a_usuarios = $o_usuario->busca(null, "perfis, nome");
 
-if (isset($_POST['enviar'])) {
+if (!isset($_POST['id'])) {
+  $a_usuarios = $o_usuario->busca(null, "perfis, nome");
+  
+} else {
+  $selecionados = "";
+  foreach($_POST['id'] as $id)
+    $selecionados .= "$id, ";
+  
+  $selecionados = substr($selecionados, 0, strlen($selecionados) - 2);
+  
+  $a_usuarios = $o_usuario->busca("id IN($selecionados)", "perfis, nome");
+  
   if ($a_usuarios) {
     $modelo = dirname(__FILE__) . "/../certificado/template_certificado.pdf";
 
@@ -58,10 +68,6 @@ if (isset($_POST['enviar'])) {
     }
   }
   exit;
-} else {
-  if (!$a_usuarios) {
-      die("<center><h2>Nenhum usu&aacute;rio encontrado</h2></center>");
-  }
 }
 ?>
 <!DOCTYPE html>
@@ -77,9 +83,11 @@ if (isset($_POST['enviar'])) {
         <center>
             <h2>Envio de Certificado aos Usuários</h2>
         </center>
+        <?php if ($a_usuarios) { ?>
         <form id="form" method="post" action="envioCertificadoUsuarios.php">
             <table width="100%" border="1" class="bordasimples">
                 <tr style="font-weight: bold">
+                    <td align="center">&nbsp;</td>
                     <td>Id</td>
                     <td>Nome</td>
                     <td>E-mail</td>
@@ -90,6 +98,7 @@ if (isset($_POST['enviar'])) {
                 foreach ($a_usuarios as $usuario) {
                 ?>
                 <tr>
+                    <td align="center"><input type='checkbox' name='id[]' value='<?php echo $usuario->id ?>' /></td>
                     <td><?php echo $usuario->id ?></td>
                     <td><?php echo utf8_encode($usuario->nome) ?></td>
                     <td><?php echo $usuario->email ?></td>
@@ -101,9 +110,10 @@ if (isset($_POST['enviar'])) {
             </table>
             <center>
               <br><br>
-              <b style="color:red">Quando tiver certeza do envio, clique no botão abaixo para iniciar o processo</b><br><br>
+              <b style="color:red">Selecione o(s) usuário(s) e clique no botão abaixo para iniciar o processo de envio.</b><br><br>
               <input type='submit' name='enviar' id='enviar' value='Enviar Certificados' /><br><br>
             </center>
         </form>
+        <?php } ?>
     </body>
 </html>
