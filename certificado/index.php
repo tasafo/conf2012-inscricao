@@ -48,7 +48,7 @@ if (isset($_POST['email'])) {
         if (file_exists($arquivo_destino)) unlink($arquivo_destino);
         
         if ($retorno) {
-            $msg = "O certificado foi enviado em anexo para seu e-mail. Obrigado e até o próximo.";
+            $msg = "O certificado foi enviado em anexo para seu e-mail. Obrigado e até o próximo evento.";
             $cor = "blue";
         } else
             $msg = "Não foi possível enviar o certificado para seu e-mail. Tente novamente.";
