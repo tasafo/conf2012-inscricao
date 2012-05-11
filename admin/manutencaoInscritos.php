@@ -22,6 +22,7 @@ if (!$a_inscritos) {
         <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
         <script type="text/javascript" src="../view/js/jquery/jquery.alerts/jquery.alerts.js" ></script>
         <script type="text/javascript" src="js/manutencaoInscritos.js" ></script>
+        <script type="text/javascript" src="js/marcarPresenca.js" ></script>
         <link href="../view/js/jquery/jquery.alerts/jquery.alerts.css" rel="stylesheet" />
         <link href="css/admin.css" rel="stylesheet" />
     </head>
@@ -42,11 +43,19 @@ if (!$a_inscritos) {
                     <td>Instituição</td>
                     <td>Nome</td>
                     <td>E-mail</td>
-                    <td align="center">Situação</td>
                     <td align="center">Presente</td>
+                    <td>Quem registrou</td>
+                    <td align="center">Situação</td>
                 </tr>
                 <?php
                 foreach ($a_inscritos as $inscritos) {
+                    $situacao = "<span style='color:red'>Cancelado</span>";
+                    if ($inscritos->situacao == "A")
+                        $situacao = "<span style='color:blue'>Ativo</span>";
+                    
+                    $presente = "<span style='color:red'>Não</span>";
+                    if ($inscritos->presente == "S")
+                        $presente = "<span style='color:blue'>Sim</span>";
                 ?>
                 <tr>
                     <td align="center"><input type='checkbox' name='id[]' value='<?php echo $inscritos->id_individual ?>' /></td>
@@ -54,8 +63,9 @@ if (!$a_inscritos) {
                     <td><?php echo utf8_encode($inscritos->instituicao) ?></td>
                     <td><?php echo utf8_encode($inscritos->nome) ?></td>
                     <td><?php echo $inscritos->email ?></td>
-                    <td align="center"><?php echo $inscritos->situacao ?></td>
-                    <td align="center"><?php echo $inscritos->presente ?></td>
+                    <td align="center"><?php echo $presente ?></td>
+                    <td><?php echo $inscritos->quem_registrou_presenca ?></td>
+                    <td align="center"><?php echo $situacao ?></td>
                 <?php
                 }
                 ?>

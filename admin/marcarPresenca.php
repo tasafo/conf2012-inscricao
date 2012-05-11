@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../general/autoload.php';
 
 header("Content-Type: application/xml; charset=utf-8");
@@ -21,6 +22,7 @@ foreach($_POST['id'] as $codigo) {
         $o_individual = new IndividualDAO();
         $o_individual->id = $codigo;
         $o_individual->presente = "S";
+        $o_individual->quem_registrou_presenca = $_SESSION['logado']['login'];
     
         if (!$o_individual->salva()) {
             $o_transacao->rollback();
@@ -32,6 +34,6 @@ foreach($_POST['id'] as $codigo) {
 
 $o_transacao->commit();
 
-$xml .= "<msg>Presenca concluida com sucesso. Recarregue a pagina.</msg>";
+$xml .= "<msg>Presenca concluida com sucesso</msg>";
 die($xml .= "</gravacao>");
 ?>

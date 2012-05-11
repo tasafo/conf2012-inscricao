@@ -45,6 +45,7 @@ CREATE  TABLE IF NOT EXISTS individual (
   cep CHAR(8) NOT NULL ,
   situacao CHAR(1) NOT NULL DEFAULT 'A',
   presente CHAR(1) NOT NULL DEFAULT 'N',
+  quem_registrou_presenca VARCHAR(50) NULL ,
   permito_divulgacao CHAR(1) NOT NULL DEFAULT 'N',
   id_inscricao INT NOT NULL ,
   PRIMARY KEY (id) ,

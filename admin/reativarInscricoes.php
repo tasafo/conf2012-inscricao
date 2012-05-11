@@ -32,6 +32,6 @@ foreach($_POST['id'] as $codigo) {
 
 $o_transacao->commit();
 
-$xml .= "<msg>Reativacao concluida com sucesso. Recarregue a pagina.</msg>";
+$xml .= "<msg>Reativacao concluida com sucesso.</msg>";
 die($xml .= "</gravacao>");
 ?>

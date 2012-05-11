@@ -11,6 +11,7 @@ class IndividualDAO extends AbstractDAO {
 	public $cep;
 	public $situacao = "A";
 	public $presente = "N";
+	public $quem_registrou_presenca;
 	public $permito_divulgacao = "N";
 
 	function __construct() {

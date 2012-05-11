@@ -106,7 +106,7 @@ class InscricaoDAO extends AbstractDAO {
     
 		$sql = "SELECT ins.id AS id_inscricao, ins.data_registro, ins.data_pagamento, ins.data_compensacao, ins.taxa,
             ind.nome, ind.email, ind.instituicao, tip.descricao AS descricao_tipo_inscricao, tip.valor,
-            ind.id AS id_individual, ind.situacao, ind.presente
+            ind.id AS id_individual, ind.situacao, ind.presente, ind.quem_registrou_presenca
             FROM inscricao ins
             JOIN tipo_inscricao tip ON (ins.id_tipo_inscricao = tip.id)
             JOIN individual ind ON (ins.id = ind.id_inscricao)
