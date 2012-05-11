@@ -3,7 +3,6 @@ session_start();
 require_once '../general/autoload.php';
 require_once '../util/constantes.php';
 
-unset($_SESSION['permissaoAdmin']);
 unset($_SESSION['logado']);
 $msg_erro = "";
 
@@ -30,15 +29,14 @@ if (!isset($_POST['email']) || !isset($_POST['senha'])) {
         $_SESSION['logado']['email'] = $email;
         $_SESSION['logado']['login'] = $login;
         
-        if (strstr($perfis_usuario, "admin")) {
-            $_SESSION['permissaoAdmin'] = 'ok';
-
-            die("<script>window.location='menu.php'</script>");
+        if (strstr($perfis_usuario, "admin"))
+           $perfil = "admin"; 
+        elseif (strstr($perfis_usuario, "organizador"))
+           $perfil = "organizador"; 
         
-        } elseif (strstr($perfis_usuario, "organizador")) {
-            die("<script>window.location='marcar_presenca.php'</script>");
-            
-        }
+        $_SESSION['logado']['perfil'] = $perfil;
+        
+        die("<script>window.location='menu.php'</script>");
     } else {
         $msg_erro .= "Usuário e senha não estão registrados no sistema.<br>";
     }
