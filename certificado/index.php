@@ -2,19 +2,27 @@
 require_once '../general/autoload.php';
 require_once '../util/constantes.php';
 
+$msg = "";
+$cor = "red";
+
 if (isset($_POST['email'])) {
-    $email = $_POST['email'];
+    $email = trim($_POST['email']);
     
     $o_individual = new IndividualDAO();
     
     $a_individual = $o_individual->busca("email = '$email' AND situacao = 'A' AND presente = 'S'");
+    
     if ($a_individual) {
         $nome = $a_individual[0]->nome;
         
         require_once(dirname(__FILE__) . "/lib/fpdf/fpdf.php");
         require_once(dirname(__FILE__) . "/lib/fpdi/fpdi.php");
-        $modelo = "template_certificado.pdf";
-        $arquivo_destino = "Certificado " . NOME_EVENTO . ".pdf";
+        
+        $modelo = dirname(__FILE__) . "/template_certificado.pdf";
+        
+        $nome_arquivo = "Certificado " . NOME_EVENTO . " participante.pdf";
+        $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
+        $arquivo_destino = dirname(__FILE__) . "/tmp/$nome_arquivo";
 
         $pdf = new FPDI();
         $pdf->AddPage('L');
@@ -32,14 +40,21 @@ if (isset($_POST['email'])) {
         $pdf->SetY("100");
         $pdf->SetX("20");
         $pdf->MultiCell(0, 9, $texto, 0, 1, 'J');
-        
-        header("Cache-Control: public");
-        header("Content-Description: File Transfer");
-        header("Content-Disposition: attachment; filename=$arquivo_destino");
-        header("Content-Type: application/pdf");
-        header("Content-Transfer-Encoding: binary");
 
-        $pdf->Output($arquivo_destino, 'D');
+        $pdf->Output($arquivo_destino, 'F');
+        
+        $retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
+          
+        if (file_exists($arquivo_destino)) unlink($arquivo_destino);
+        
+        if ($retorno) {
+            $msg = "O certificado foi enviado em anexo para seu e-mail. Obrigado e até o próximo.";
+            $cor = "blue";
+        } else
+            $msg = "Não foi possível enviar o certificado para seu e-mail. Tente novamente.";
+            
+    } else {
+        $msg = "E-mail não encontrando ou você não esteve presente no evento.";
     }
 }
 ?>
@@ -53,11 +68,13 @@ if (isset($_POST['email'])) {
         <div id="main_header">
             <div id="header">
                 <div id="texto">
-                    <h4>Informe seu e-mail de inscrição para emitir o certificado</h4>
+                    <h4>Digite o e-mail que foi informado na sua inscrição para que o sistema possa emitir o certificado e enviá-lo.</h4>
                     <form id="form" name="form" action="index.php" method="post">
                         <input type="text" name="email" id="email" maxlength="100" size="30" />
                         <input type="submit" id="emitir" name="emitir" value="Emitir certificado" />
                     </form>
+                    <br><br>
+                    <p style="color: <?php echo $cor?>"><b><?php echo $msg ?></b></p>
                 </div>
             </div>
         </div>
