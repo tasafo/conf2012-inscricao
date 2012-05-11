@@ -81,6 +81,7 @@ if (isset($_POST['enviar'])) {
         <form id="form" method="post" action="envioCertificadoUsuarios.php">
             <table width="100%" border="1" class="bordasimples">
                 <tr style="font-weight: bold">
+                    <td>Id</td>
                     <td>Nome</td>
                     <td>E-mail</td>
                     <td>Perfis</td>
@@ -89,6 +90,7 @@ if (isset($_POST['enviar'])) {
                 foreach ($a_usuarios as $usuario) {
                 ?>
                 <tr>
+                    <td><?php echo $usuario->id ?></td>
                     <td><?php echo utf8_encode($usuario->nome) ?></td>
                     <td><?php echo $usuario->email ?></td>
                     <td><?php echo $usuario->perfis ?></td>
