@@ -11,7 +11,6 @@ $o_inscricao = new InscricaoDAO();
 $a_inscritos = $o_inscricao->selecionar_inscritos_individual(true, $ordem, "T");
 
 if (!$a_inscritos) {
-    echo '<center><h3><a href="menu.php">Voltar ao Menu</a></h3><br>';
     die("<h2>Nenhuma inscri&ccedil;&atilde;o encontrada</h2></center>");
 }
 ?>
@@ -28,7 +27,6 @@ if (!$a_inscritos) {
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
             <h2>Manutenção de Inscritos</h2>
         </center>
         <form id="form" action="post" action="">

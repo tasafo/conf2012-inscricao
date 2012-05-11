@@ -6,7 +6,6 @@ $o_inscricao = new InscricaoDAO();
 $a_pagamentos = $o_inscricao->total_de_pagamentos_por_compensacao();
 
 if (!$a_pagamentos) {
-    echo '<center><h3><a href="menu.php">Voltar ao Menu</a></h3><br>';
     die("<h2>Nenhuma inscri&ccedil;&atilde;o encontrada</h2></center>");
 }
 ?>
@@ -14,13 +13,12 @@ if (!$a_pagamentos) {
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-        <title>Pagamentos por Compensação</title>
+        <title>Pagamentos por Data de Compensação</title>
         <link href="css/admin.css" rel="stylesheet" />
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
-            <h2>Pagamentos por Compensação</h2>
+            <h2>Pagamentos por Data de Compensação</h2>
         </center>
         <table width="20%" border="1" class="bordasimples">
             <tr style="font-weight: bold">

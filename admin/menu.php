@@ -13,8 +13,7 @@ $a_menu = array(
     'manutencaoInscritos' => 'Manutenção dos Inscritos',
     'importarPagamentos' => 'Importar Pagamentos do Pagseguro',
     'envioEmailAviso' => 'Enviar avisos por e-mail',
-    'envioCertificadoUsuarios' => 'Enviar Certificados para Usuários',
-    'index' => 'Sair'
+    'envioCertificadoUsuarios' => 'Enviar Certificados para Usuários'
 );
 
 $o_inscricao = new InscricaoDAO();
@@ -34,10 +33,6 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
     <body>
         <center>
             <table>
-                <tr>
-                    <td align="center"><b>Área Administrativa</b></td>
-                </tr>
-                
                 <?php foreach ($a_menu as $arquivo => $opcao) { ?>
                 <tr>
                     <td>&nbsp;</td>

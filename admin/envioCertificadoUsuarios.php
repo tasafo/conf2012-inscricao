@@ -52,15 +52,15 @@ if (isset($_POST['enviar'])) {
           
           if (file_exists($arquivo_destino)) unlink($arquivo_destino);
       
-          echo "O certificado de $perfil de <b>" . utf8_encode($nome) . "</b>" . ($retorno ? "" : " nao") . " foi enviado com sucesso<br><br>";
+          echo "<br><br>O certificado de $perfil de <b>" . utf8_encode($nome) . "</b>" . ($retorno ? "" : " nao") . " foi enviado com sucesso";
         }
       }
     }
   }
-  die("<center><h3><a href='menu.php'>Voltar ao Menu</a></h3></center>");
+  exit;
 } else {
   if (!$a_usuarios) {
-      die("<center><h3><a href='menu.php'>Voltar ao Menu</a></h3><br><h2>Nenhum usu&aacute;rio encontrado</h2></center>");
+      die("<center><h2>Nenhum usu&aacute;rio encontrado</h2></center>");
   }
 }
 ?>
@@ -75,7 +75,6 @@ if (isset($_POST['enviar'])) {
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
             <h2>Envio de Certificado aos Usuários</h2>
         </center>
         <form id="form" method="post" action="envioCertificadoUsuarios.php">

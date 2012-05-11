@@ -20,8 +20,7 @@ foreach ($a_tipo_inscricao as $tipo_inscricao) {
 		<link type="text/css" href="../view/css/estilo.css" rel="stylesheet" />
 	</head>
     <body>
-        <h3><center><a href="menu.php">Voltar ao Menu</a></center></h3>
-        <h1>Relat&oacute;rios</h1>
+        <h1>Outros Relatórios</h1>
         <form name="frm_consulta" action="">
             <table align="center">
                 <tr>

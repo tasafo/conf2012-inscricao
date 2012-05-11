@@ -31,7 +31,6 @@ if ($_POST['inicio'] && $_POST['fim']) {
     $a_inscritos = $o_inscritos->inscritos_por_intervalo($inicio, $fim, $so_inadimplentes, $incluir_cancelados, $so_adimplentes, $so_presentes, $so_faltosos);
     
     if ($a_inscritos) {
-        echo '<center><h3><a href="menu.php">Voltar ao Menu</a></h3>';
         echo "<h2>Log de envio de e-mail's</h2></center>";
         
         foreach($a_inscritos as $inscrito) {
@@ -46,7 +45,6 @@ if ($_POST['inicio'] && $_POST['fim']) {
                 echo "$id - O e-mail para <b>$email</b> foi enviado com sucesso<br>";
         }
     } else {
-        echo '<center><h3><a href="menu.php">Voltar ao Menu</a></h3><br>';
         die("<h2>Nenhuma inscri&ccedil;&atilde;o encontrada</h2></center>");
     }
 } else {
@@ -60,7 +58,6 @@ if ($_POST['inicio'] && $_POST['fim']) {
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
             <h2>Envio de email's</h2>
         </center>
         <form action="" method="post">

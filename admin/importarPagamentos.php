@@ -162,7 +162,6 @@ if ($_FILES['arquivo']) {
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
             <h2>Importar Pagamentos</h2>
             <form name="frmDirf" method="post" enctype="multipart/form-data" action="importarPagamentos.php">
                 Arquivo: <input type="file" size="40" name="arquivo"><br><br>

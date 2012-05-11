@@ -28,7 +28,6 @@ if ($_POST['sql']) {
     </head>
     <body>
         <center>
-            <h3><a href="menu.php">Voltar ao Menu</a></h3>
             <h2>Manutenção</h2>
         </center>
         <form action="" method="post">

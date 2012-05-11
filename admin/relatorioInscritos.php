@@ -11,7 +11,6 @@ $o_inscricao = new InscricaoDAO();
 $a_relacao_inscritos = $o_inscricao->selecionar_relacao_geral_inscritos($ordem);
 
 if (!$a_relacao_inscritos) {
-	echo '<center><h3><a href="menu.php">Voltar ao Menu</a></h3><br>';
 	die("<h2>Nenhuma inscri&ccedil;&atilde;o encontrada</h2></center>");
 }
 ?>
@@ -27,7 +26,6 @@ if (!$a_relacao_inscritos) {
         </style>
     </head>
     <body>
-        <center><a href="menu.php">Voltar ao Menu</a></center>
         <br>
         <table width="100%" border="1" class="bordasimples">
             <tr style="font-weight: bold; text-align: center">
