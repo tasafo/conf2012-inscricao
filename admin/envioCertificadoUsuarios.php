@@ -84,6 +84,7 @@ if (isset($_POST['enviar'])) {
                     <td>Nome</td>
                     <td>E-mail</td>
                     <td>Perfis</td>
+                    <td>Tema da Palestra</td>
                 </tr>
                 <?php
                 foreach ($a_usuarios as $usuario) {
@@ -93,6 +94,7 @@ if (isset($_POST['enviar'])) {
                     <td><?php echo utf8_encode($usuario->nome) ?></td>
                     <td><?php echo $usuario->email ?></td>
                     <td><?php echo $usuario->perfis ?></td>
+                    <td><?php echo utf8_encode($usuario->tema_palestra) ?></td>
                 <?php
                 }
                 ?>
