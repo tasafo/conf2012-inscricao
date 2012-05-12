@@ -20,26 +20,34 @@ if (isset($_POST['email'])) {
         
         $modelo = dirname(__FILE__) . "/template_certificado.pdf";
         
-        $nome_arquivo = "Certificado " . NOME_EVENTO . " participante.pdf";
+        $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos(utf8_encode($nome)) . ".pdf";
         $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
         $arquivo_destino = dirname(__FILE__) . "/tmp/$nome_arquivo";
+
+        $nome_convertido = utf8_encode($nome);
+        
+        $titulo = "CERTIFICADO";
+
+        $corpo = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de participante.");
 
         $pdf = new FPDI();
         $pdf->AddPage('L');
         $pdf->setSourceFile($modelo);
         $tplIdx = $pdf->importPage(1);
-        $pdf->useTemplate($tplIdx);
+        $pdf->useTemplate($tplIdx);                
         
+        // Titulo
+        $pdf->SetFont('Arial', 'B', 32);
+        $pdf->SetTextColor(35, 142, 35); //Verde Floresta
+        $pdf->SetXY(110, 35);
+        $pdf->Write(0, $titulo);
+        
+        // Corpo do texto
         $pdf->SetFont('Arial', '', 22);
-        $pdf->SetTextColor(255, 255, 255);
-        
-        $nome_convertido = utf8_encode($nome);
-          
-        $texto = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de participante.");
-        
-        $pdf->SetY("100");
+        $pdf->SetTextColor(35, 142, 35); //Verde Floresta
+        $pdf->SetY("65");
         $pdf->SetX("20");
-        $pdf->MultiCell(0, 9, $texto, 0, 1, 'J');
+        $pdf->MultiCell(0, 9, $corpo, 0, 1, 'J');
 
         $pdf->Output($arquivo_destino, 'F');
         

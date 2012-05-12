@@ -43,19 +43,27 @@ if (!isset($_POST['id'])) {
           $tplIdx = $pdf->importPage(1);
           $pdf->useTemplate($tplIdx);
           
-          $pdf->SetFont('Arial', '', 22);
-          $pdf->SetTextColor(255, 255, 255);
-          
           $palestra = ($perfil == "palestrante") ? ', com o tema "' . utf8_encode($tema_palestra) . '"' : "";
           
           $nome_convertido = utf8_encode($nome);
           
-          $texto = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de $perfil$palestra.");
+          $titulo = "CERTIFICADO";
           
-          $pdf->SetY("100");
+          $corpo = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de $perfil$palestra.");
+          
+          // Titulo
+          $pdf->SetFont('Arial', 'B', 32);
+          $pdf->SetTextColor(35, 142, 35); //Verde Floresta
+          $pdf->SetXY(110, 35);
+          $pdf->Write(0, $titulo);
+          
+          // Corpo do texto
+          $pdf->SetFont('Arial', '', 22);
+          $pdf->SetTextColor(35, 142, 35); //Verde Floresta
+          $pdf->SetY("65");
           $pdf->SetX("20");
-          $pdf->MultiCell(0, 9, $texto, 0, 1, 'J');
-
+          $pdf->MultiCell(0, 9, $corpo, 0, 1, 'J');
+        
           $pdf->Output($arquivo_destino, 'F');
           
           $retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
