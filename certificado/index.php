@@ -54,7 +54,7 @@ if (isset($_POST['email'])) {
             $msg = "Não foi possível enviar o certificado para seu e-mail. Tente novamente.";
             
     } else {
-        $msg = "E-mail não encontrando ou você não esteve presente no evento.";
+        $msg = "E-mail não encontrando ou sua presença não foi registrada no evento.";
     }
 }
 ?>
