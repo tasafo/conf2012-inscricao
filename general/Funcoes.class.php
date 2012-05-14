@@ -123,7 +123,7 @@ class Funcoes {
         return implode(preg_match("~\/~", $__data) == 0 ? "/" : "-", array_reverse(explode(preg_match("~\/~", $__data) == 0 ? "-" : "/", $__data)));
     }
         
-    function diferenca_entre_datas($d1, $d2, $type='D', $sep='/') {
+    public static function diferenca_entre_datas($d1, $d2, $type='D', $sep='/') {
         $d1 = explode($sep, $d1);
         $d2 = explode($sep, $d2);
         
@@ -148,6 +148,22 @@ class Funcoes {
         }
         
         return floor( ( ( mktime(0, 0, 0, $d2[1], $d2[0], $d2[2]) - mktime(0, 0, 0, $d1[1], $d1[0], $d1[2] ) ) / $X ) );
+    }
+    
+    public static function special_ucwords($string) {
+        $retorno = array();
+        $string = strtolower(trim(preg_replace("/\s+/", " ", $string)));
+        $palavras = explode(" ", $string);
+
+        foreach ($palavras as $palavra) {
+            if (!preg_match("/^([dn]?[aeiou][s]?|em)$/i", $palavra)) {
+                $palavra = ucfirst($palavra);
+            }
+            $retorno[] = strtr($palavra, "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÜÚÞß",
+                                         "àáâãäåæçèéêëìíîïðñòóôõö÷øùüúþÿ");
+        }
+        
+        return implode(" ", $retorno);
     }
 }
 ?>
