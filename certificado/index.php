@@ -13,18 +13,18 @@ if (isset($_POST['email'])) {
     $a_individual = $o_individual->busca("email = '$email' AND situacao = 'A' AND presente = 'S'");
     
     if ($a_individual) {
-        $nome = $a_individual[0]->nome;
+        $nome = utf8_encode($a_individual[0]->nome);
         
         require_once(dirname(__FILE__) . "/lib/fpdf/fpdf.php");
         require_once(dirname(__FILE__) . "/lib/fpdi/fpdi.php");
         
         $modelo = dirname(__FILE__) . "/template_certificado.pdf";
         
-        $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos(utf8_encode($nome)) . ".pdf";
+        $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos($nome) . ".pdf";
         $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
         $arquivo_destino = dirname(__FILE__) . "/tmp/$nome_arquivo";
 
-        $nome_convertido = utf8_encode($nome);
+        $nome_convertido = Funcoes::special_ucwords($nome);
         
         $titulo = "CERTIFICADO";
 
@@ -51,9 +51,9 @@ if (isset($_POST['email'])) {
 
         $pdf->Output($arquivo_destino, 'F');
         
-        $retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
+        //$retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
           
-        if (file_exists($arquivo_destino)) unlink($arquivo_destino);
+        //if (file_exists($arquivo_destino)) unlink($arquivo_destino);
         
         if ($retorno) {
             $msg = "O certificado foi enviado em anexo para seu e-mail. Obrigado e até o próximo evento.";
