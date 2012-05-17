@@ -51,9 +51,9 @@ if (isset($_POST['email'])) {
 
         $pdf->Output($arquivo_destino, 'F');
         
-        //$retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
+        $retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
           
-        //if (file_exists($arquivo_destino)) unlink($arquivo_destino);
+        if (file_exists($arquivo_destino)) unlink($arquivo_destino);
         
         if ($retorno) {
             $msg = "O certificado foi enviado em anexo para seu e-mail. Obrigado e até o próximo evento.";
