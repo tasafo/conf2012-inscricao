@@ -2,23 +2,6 @@
 require 'validaSessao.php';
 require_once '../general/autoload.php';
 
-$perfil_usuario_logado = $_SESSION['logado']['perfil'];
-
-$a_menu = array(
-    array('relatorioIndividual', 'Inscrições Individuais', 'admin, organizador'),
-    array('relatorioEmpresas', 'Inscrições por Empresa', 'admin, organizador'),
-    array('relatorioInscritos', 'Listagem dos Inscritos Pagantes', 'admin, organizador'),
-    array('relatorioFaturamentoIndividual', 'Faturamento de Inscrições Individuais', 'admin'),
-    array('relatorioPresentes', 'Relatório de Presentes', 'admin, organizador'),
-    array('relatoriosTela', 'Outros Relatórios', 'admin'),
-    array('pagamentosPorCompensacao', 'Pagamentos por data de compensação', 'admin'),
-    array('manutencaoInscritos', 'Manutenção dos Inscritos', 'admin'),
-    array('importarPagamentos', 'Importar Pagamentos do Pagseguro', 'admin'),
-    array('envioEmailAviso', 'Enviar avisos por e-mail', 'admin'),
-    array('envioCertificadoUsuarios', 'Enviar Certificados para Usuários', 'admin'),
-    array('registrarPresencaInscrito', 'Registrar Presença do Inscrito', 'admin, organizador')
-);
-
 $o_inscricao = new InscricaoDAO();
 $a_em_aberto = $o_inscricao->valor_total_inscritos("A");
 $a_confirmados = $o_inscricao->valor_total_inscritos("C");
