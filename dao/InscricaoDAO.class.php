@@ -66,23 +66,36 @@ class InscricaoDAO extends AbstractDAO {
     }
     
     function valor_total_inscritos($situacao = null) {
-        if ($situacao == "A") // Em aberto
-            $condicao = " AND ins.data_pagamento IS NULL";
-        else if ($situacao == "C") // Confirmadas
-            $condicao = " AND ins.data_pagamento IS NOT NULL";
-        else if ($situacao == "CR") // Confirmadas a Receber
-            $condicao = " AND ins.data_pagamento IS NOT NULL AND ins.data_compensacao > '" . date("Y-m-d") . "'";
-        else if ($situacao == "CD") // Confirmadas Disponivel
-            $condicao = " AND ins.data_pagamento IS NOT NULL AND ins.data_compensacao <= '" . date("Y-m-d") . "'";
-        else
-            $condicao = "";
+        $hoje = date("Y-m-d");
         
+        switch ($situacao) {
+            case "A": // Em aberto
+                $condicao = "ind.situacao = 'A' AND ins.data_pagamento IS NULL";
+                break;
+            case "C": // Confirmadas
+                $condicao = "ind.situacao = 'A' AND ins.data_pagamento IS NOT NULL";
+                break;
+            case "CR": // Confirmadas a Receber
+                $condicao = "ind.situacao = 'A' AND ins.data_pagamento IS NOT NULL AND tip.descricao != 'Cortesia' AND ins.data_compensacao > '$hoje'";
+                break;
+            case "CD": // Confirmadas Disponivel
+                $condicao = "ind.situacao = 'A' AND ins.data_pagamento IS NOT NULL AND tip.descricao != 'Cortesia' AND ins.data_compensacao <= '$hoje'";
+                break;
+            case "CO": // Cortesias
+                $condicao = "ind.situacao = 'A' AND ins.data_pagamento IS NOT NULL AND tip.descricao = 'Cortesia'";
+                break;
+            case "CA": // Canceladas
+                $condicao = "ind.situacao = 'C'";
+                break;
+            default:
+                $condicao = "ind.situacao = 'A'";
+        }
+
         $sql = "SELECT COUNT(*) AS quantidade, SUM(tip.valor - ins.taxa) AS valor
             FROM inscricao ins
             JOIN tipo_inscricao tip ON (ins.id_tipo_inscricao = tip.id)
             JOIN individual ind ON (ins.id = ind.id_inscricao)
-            WHERE ind.situacao = 'A'
-            $condicao";
+            WHERE $condicao";
 
         return $this->resultado_consulta($sql);
     }
