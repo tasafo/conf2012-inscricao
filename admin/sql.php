@@ -30,7 +30,7 @@ if ($_POST['sql']) {
         <center>
             <h2>Manutenção</h2>
         </center>
-        <form action="" method="post">
+        <form action="sql.php" method="post">
             SQL:<br>
             <textarea rows="15" cols="80" name="sql"><?php echo $sql ?></textarea><br><br>
             <input type="submit" name="submit" value="Executar">
