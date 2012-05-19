@@ -7,6 +7,8 @@ $a_em_aberto = $o_inscricao->valor_total_inscritos("A");
 $a_confirmados = $o_inscricao->valor_total_inscritos("C");
 $a_confirmados_a_receber = $o_inscricao->valor_total_inscritos("CR");
 $a_confirmados_disponivel = $o_inscricao->valor_total_inscritos("CD");
+$a_cortesias = $o_inscricao->valor_total_inscritos("CO");
+$a_cancelados = $o_inscricao->valor_total_inscritos("CA");
 $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
 ?>
 <!DOCTYPE html>
@@ -44,28 +46,68 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
         if ($perfil_usuario_logado == "admin") {
         ?>
             <br><hr>
-            <b>Totais de inscrições</b><br><br>
-            <b><?php echo $a_em_aberto[0]->quantidade ?></b> inscrições em <b>aberto</b> no valor de <b>R$ <?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></b>
-            <br><br>
-            <b>Inscrições Confirmadas</b>
-            <br>---------------------------------------------------------------------<br>
-            <b><?php echo $a_confirmados_a_receber[0]->quantidade ?></b> a receber no valor de <b>R$ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></b>
-            <br>
-            <b><?php echo $a_confirmados_disponivel[0]->quantidade ?></b> disponíveis no valor de <b>R$ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></b>
-            <br>---------------------------------------------------------------------<br>
-            <b><?php echo $a_confirmados[0]->quantidade ?></b> no valor total de <b>R$ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados[0]->valor) ?></b>
-            <br><br>
-            <b><?php echo $a_em_aberto[0]->quantidade + $a_confirmados[0]->quantidade ?></b> inscrições realizadas no total
-            
+            <table border="1" class="bordasimples" width="30%">
+                <tr>
+                    <td colspan="3" style="font-weight: bold; text-align:center">Resumo das Inscrições</td>
+                </tr>
+                <tr style="font-weight: bold; text-align:center">
+                    <td>Qtd.</td>
+                    <td>Descrição</td>
+                    <td>Valor (R$)</td>
+                </tr>
+                <tr style="color:red; font-weight:bold">
+                    <td align="center"><?php echo $a_em_aberto[0]->quantidade ?></td>
+                    <td>Em aberto (+)</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
+                </tr>
+                <tr style="color:#500000; font-weight:bold">
+                    <td align="center"><?php echo $a_cancelados[0]->quantidade ?></td>
+                    <td>Canceladas</td>
+                    <td align="right"></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="color:blue; font-weight: bold; text-align:center">Confirmadas</td>
+                </tr>
+                <tr>
+                    <td align="center"><?php echo $a_confirmados_a_receber[0]->quantidade ?></td>
+                    <td>A receber</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></td>
+                </tr>
+                <tr>
+                    <td align="center"><?php echo $a_confirmados_disponivel[0]->quantidade ?></td>
+                    <td>Disponíveis</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
+                </tr>
+                <tr>
+                    <td align="center"><?php echo $a_cortesias[0]->quantidade ?></td>
+                    <td>Cortesias</td>
+                    <td align="right"></td>
+                </tr>
+                <tr style="color:blue; font-weight:bold">
+                    <td align="center"><?php echo $a_confirmados[0]->quantidade ?></td>
+                    <td>Subtotal (+)</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados[0]->valor) ?></td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="color:green; font-weight: bold; text-align:center">Montante</td>
+                </tr>
+                <tr style="color:green; font-weight:bold">
+                    <td align="center"><?php echo $a_em_aberto[0]->quantidade + $a_confirmados[0]->quantidade ?></td>
+                    <td>Total (=)</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor + $a_confirmados[0]->valor) ?></td>
+                </tr>
+            </table>
         <?php
             if ($a_incritos_instituicao) {
         ?>
-            <br><br><hr>
-            <b>Inscritos por Instituição</b><br><br>
+            <br><br>
             <table border="1" class="bordasimples">
                 <tr>
-                    <th>Instituição</th>
-                    <th>Inscritos</th>
+                    <td colspan="2" style="font-weight: bold; text-align:center">Ranking por Instituição</td>
+                </tr>
+                <tr align="center" style="font-weight: bold">
+                    <td>Nome</td>
+                    <td>Inscritos</td>
                 </tr>
         <?php
                 $total_inscritos = 0;
