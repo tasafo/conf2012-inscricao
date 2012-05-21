@@ -56,6 +56,7 @@ class EnviarEmail {
                 $texto .= "$complemento<br><br>";
             } else {    
                 $texto .= "
+                    Estamos chegando ao n&uacute;mero m&aacute;ximo da lota&ccedil;&atilde;o do evento. Precisamos que voc&ecirc; confirme sua participa&ccedil;&atilde;o.<br><br>
                     Verificamos em nosso sistema que seu pagamento ainda n&atilde;o foi efetuado.<br><br>
                     Assim que conclu&iacute;do, voc&ecirc; receber&aacute; uma mensagem de confirma&ccedil;&atilde;o.<br><br>
                     Caso tenha ocorrido algum problema, utilize o link abaixo para efetuar o pagamento e confirmar sua inscri&ccedil;&atilde;o.<br><br>
