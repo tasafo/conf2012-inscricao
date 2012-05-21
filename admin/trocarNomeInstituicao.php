@@ -20,8 +20,6 @@ foreach($_POST['id'] as $codigo) {
     $o_individual = new IndividualDAO();
     
     if ($o_individual->busca($codigo)) {
-        $o_individual = new IndividualDAO();
-        $o_individual->id = $codigo;
         $o_individual->instituicao = $novo_nome;
     
         if (!$o_individual->salva()) {
