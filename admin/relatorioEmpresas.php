@@ -81,6 +81,7 @@ if (!$a_inscritos_empresas) {
                     $contadorEmpresa = 0;
 
                     if (empty($inscricao->data_pagamento)) {
+                        $cor = "red";
                         $dataPagamento = "Dt. Pagto.: <input type='text' size=10 maxlength=10 name='dtPagamento' id='data_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
                         
                         $dataCompensacao = "Dt. Compens.: <input type='text' size=10 maxlength=10 name='dtCompensacao' id='compensacao_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
@@ -91,6 +92,7 @@ if (!$a_inscritos_empresas) {
                         
                         $cortesia = "<input type='checkbox' name='cortesia' id='cortesia_$idEmpresa' value='N' onclick='marcaCortesia($idEmpresa)' />";
                     } else {
+                        $cor = "blue";
                         $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento);
                         $dataCompensacao = empty($inscricao->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($inscricao->data_compensacao);
                         $taxaPagamento = "";
@@ -98,7 +100,7 @@ if (!$a_inscritos_empresas) {
                         $cortesia = "&nbsp;";
                     }
             ?>
-            <tr style="font-weight: bold; color: navy">
+            <tr style="font-weight: bold; color: <?php echo $cor ?>">
                 <td colspan="2"></td>
                 <td>
                     <?php echo $idEmpresa ?> - 
@@ -117,7 +119,7 @@ if (!$a_inscritos_empresas) {
                 </td>
                 <td align="center">
                     <div id="div_botao_<?php echo $idEmpresa ?>"><?php echo $confirmar ?></div>
-                    <input type='button' name='adicionar' id='adicionar' value='Adicionar Func.' onclick="window.location='addEmployee.php?id=<?php echo $idEmpresa ?>'"/>
+                    <input type='button' name='adicionar' id='adicionar' value='Membros' onclick="window.location='addEmployee.php?id=<?php echo $idEmpresa ?>'"/>
                 </td>
             </tr>
             <?php

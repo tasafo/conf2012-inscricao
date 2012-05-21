@@ -60,7 +60,7 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                     <td>Em aberto (+)</td>
                     <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
                 </tr>
-                <tr style="color:#500000; font-weight:bold">
+                <tr style="color:maroon; font-weight:bold">
                     <td align="center"><?php echo $a_cancelados[0]->quantidade ?></td>
                     <td>Canceladas</td>
                     <td align="right"></td>
