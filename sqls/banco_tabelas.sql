@@ -9,7 +9,7 @@ ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMEN
 
 CREATE  TABLE IF NOT EXISTS inscricao (
   id INT NOT NULL AUTO_INCREMENT ,
-  data_registro DATETIME NOT NULL ,
+  data_registro DATETIME NULL ,
   data_pagamento DATETIME NULL ,
   data_compensacao DATETIME NULL ,
   tipo_pagamento VARCHAR(50) NULL ,

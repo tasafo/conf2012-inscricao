@@ -52,7 +52,6 @@ if (!empty($_SESSION['Funcionarios'])) {
 		$o_inscricao = new InscricaoDAO();
 		$o_inscricao->id_empresa = $o_empresa->id;
 		$o_inscricao->id_tipo_inscricao = $id_tipo_inscricao;
-		$o_inscricao->data_registro = date("Y-m-d H:i:s");
 
 		if (!$o_inscricao->salva()) {
 			$o_transacao->rollback();

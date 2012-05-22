@@ -29,7 +29,6 @@ $o_transacao->begin();
 
 $o_inscricao = new InscricaoDAO();
 $o_inscricao->id_tipo_inscricao = $o_tipo_inscricao->id;
-$o_inscricao->data_registro = date("Y-m-d H:i:s");
 
 if (!$o_inscricao->salva()) {
 	$o_transacao->rollback();
