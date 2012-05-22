@@ -38,7 +38,7 @@ if (count($_POST) > 0) {
                 $modo_pagamento = substr($xml->reference, 0, 1);
                 $id_ref_pagamento = substr($xml->reference, 1);
 
-                $data_registro = substr($xml->date, 0, 10) . " " . substr($xml->date, 12);
+                $data_criacao_transacao = substr($xml->date, 0, 10) . " " . substr($xml->date, 12);
                 
                 $data_pagamento = date("Y-m-d H:i:s");
                 
@@ -69,7 +69,7 @@ if (count($_POST) > 0) {
                                         
                                 $o_inscricao = new InscricaoDAO();
                                 $o_inscricao->id = $id_inscricao;
-                                $o_inscricao->data_registro = $data_registro;
+                                $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
                                 $o_inscricao->data_pagamento = $data_pagamento;
                                 $o_inscricao->data_compensacao = $data_compensacao;
                                 $o_inscricao->taxa = $valor_taxa;
@@ -117,7 +117,7 @@ if (count($_POST) > 0) {
                                 if (empty($inscrito->data_pagamento)) {
                                     $o_inscricao = new InscricaoDAO();
                                     $o_inscricao->id = $inscrito->id;
-                                    $o_inscricao->data_registro = $data_registro;
+                                    $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
                                     $o_inscricao->data_pagamento = $data_pagamento;
                                     $o_inscricao->data_compensacao = $data_compensacao;
                                     $o_inscricao->taxa = $taxa;
