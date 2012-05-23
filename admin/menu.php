@@ -27,13 +27,13 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                     $opcao = $menu[1];
                     $perfis = $menu[2];
                     
-                    if (strstr($perfis, $perfil_usuario_logado)) {
+                    if ($opcao && strstr($perfis, $perfil_usuario_logado)) {
                 ?>
                 <tr>
-                    <td>&nbsp;</td>
+                    <td><a href="<?php echo "$arquivo.php" ?>"><?php echo $opcao ?></a></td>
                 </tr>
                 <tr>
-                    <td><a href="<?php echo "$arquivo.php" ?>"><?php echo $opcao ?></a></td>
+                    <td>&nbsp;</td>
                 </tr>
                 <?php
                     }
@@ -45,7 +45,7 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
         <?php
         if ($perfil_usuario_logado == "admin") {
         ?>
-            <br><hr>
+            <hr><br>
             <table border="1" class="bordasimples" width="30%">
                 <tr>
                     <td colspan="3" style="font-weight: bold; text-align:center">Resumo das Inscrições</td>
@@ -98,6 +98,7 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                 </tr>
             </table>
         <?php
+        }
             if ($a_incritos_instituicao) {
         ?>
             <br><br>
@@ -128,7 +129,6 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
             </table>
         <?php
             }
-        }
         ?>
     </body>
 </html>
