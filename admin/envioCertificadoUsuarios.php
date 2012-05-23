@@ -89,7 +89,7 @@ if (!isset($_POST['id'])) {
     </head>
     <body>
         <center>
-            <h2>Envio de Certificado aos Usuários</h2>
+            <h2>Organizadores, Palestrantes e Administradores</h2>
         </center>
         <?php if ($a_usuarios) { ?>
         <form id="form" method="post" action="envioCertificadoUsuarios.php">

@@ -8,7 +8,7 @@ $perfil_usuario_logado = $_SESSION['logado']['perfil'];
 $a_menu = array(
     array('sql', '', 'admin'),
     array('relatorioIndividual', 'Inscrições Individuais', 'admin'),
-    array('relatorioEmpresas', 'Inscrições por Empresa', 'admin'),
+    array('relatorioEmpresas', 'Inscrições por Instituição', 'admin'),
     array('relatorioInscritos', 'Listagem dos Inscritos Pagantes', 'admin, organizador'),
     array('relatorioFaturamentoIndividual', 'Faturamento de Inscrições Individuais', 'admin'),
     array('relatorioPresentes', 'Relatório de Presentes', 'admin, organizador'),
@@ -17,7 +17,7 @@ $a_menu = array(
     array('manutencaoInscritos', 'Manutenção dos Inscritos', 'admin'),
     array('importarPagamentos', 'Importar Pagamentos do Pagseguro', 'admin'),
     array('envioEmailAviso', 'Enviar avisos por e-mail', 'admin'),
-    array('envioCertificadoUsuarios', 'Enviar Certificados para Usuários', 'admin'),
+    array('envioCertificadoUsuarios', 'Organizadores, Palestrantes e Administradores', 'admin'),
     array('registrarPresencaInscrito', 'Registrar Presença do Inscrito', 'admin, organizador')
 );
 
