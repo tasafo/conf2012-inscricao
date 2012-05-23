@@ -6,12 +6,14 @@ class Funcoes {
 		return $explodeData[2] . '-' . $explodeData[1] . '-' . $explodeData[0];
 	}
 
-	public static function formata_data_para_exibir($data) {
+	public static function formata_data_para_exibir($data, $exibe_hora = false) {
 		$data = explode(' ', $data);
 		
 		$explodeData = explode('-', $data[0]);
 		
-		return $explodeData[2] . '/' . $explodeData[1] . '/' . $explodeData[0];
+		$hora = ($exibe_hora) ? " " . $data[1] : "";
+		
+		return $explodeData[2] . '/' . $explodeData[1] . '/' . $explodeData[0] . $hora;
 	}
 	
 	public static function formata_moeda_para_exibir($valor) {
