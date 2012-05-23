@@ -117,10 +117,13 @@ if (!isset($_POST['id'])) {
                 <?php
                 }
                 ?>
+                <tr>
+                    <td colspan="7" align="center"><b><?php echo count($a_usuarios) ?> pessoas envolvidas</b></td>
+                </tr>
             </table>
             <center>
-              <br><br>
-              <b style="color:red">Selecione o(s) usuário(s) e clique no botão abaixo para iniciar o processo de envio.</b><br><br>
+              <br>
+              <b style="color:red">Selecione o(s) usuário(s) e clique no botão abaixo para enviar os certificados aos destinatários por e-mail.</b><br><br>
               <input type='submit' name='enviar' id='enviar' value='Enviar Certificados' /><br><br>
             </center>
         </form>
