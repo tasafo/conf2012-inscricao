@@ -29,12 +29,12 @@ if (!$a_inscritos_individual) {
             <tr style="font-weight: bold">
                 <td align="center">Id Insc.</td>
                 <td align="center">Data Insc.</td>
-                <td>Id - Nome | E-mail | Instituição</td>
+                <td>Id - Nome | Profissão | E-mail | Instituição</td>
                 <td>Tipo Insc.</td>
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center" width="20%">Pagto. | Compens.</td>
+                <td align="center" width="20%">Pagto. | Compensação</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -53,6 +53,7 @@ if (!$a_inscritos_individual) {
                 $idIndividual = $individual->id_individual;
                 $idInscricao = $individual->id_inscricao;
                 $nome = utf8_encode($individual->nome);
+                $profissao = utf8_encode($individual->profissao);
                 $valorInscricao += $individual->valor;
                 $valorTaxaInscricao += $individual->taxa;
                 $subTotalInscricao = $individual->valor - $individual->taxa;
@@ -79,8 +80,8 @@ if (!$a_inscritos_individual) {
                     $valorInscricaoConfirmados += $individual->valor;
                     $valorTotalInscricao += $subTotalInscricao;
 
-                    $dataPagamento = Funcoes::formata_data_para_exibir($individual->data_pagamento);
-                    $dataCompensacao = empty($individual->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($individual->data_compensacao);
+                    $dataPagamento = Funcoes::formata_data_para_exibir($individual->data_pagamento, true);
+                    $dataCompensacao = empty($individual->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($individual->data_compensacao, true);
                     $taxaPagamento = "";
                     $cortesia = "&nbsp;";
                     $confirmar = "&nbsp;";
@@ -89,10 +90,11 @@ if (!$a_inscritos_individual) {
             ?>
             <tr id="row_<?php echo $idIndividual ?>" style="color: <?php echo $cor ?>;">
                 <td align="center"><?php echo $idInscricao ?></td>
-                <td align="center"><?php echo Funcoes::formata_data_para_exibir($individual->data_registro) ?></td>
+                <td align="center"><?php echo Funcoes::formata_data_para_exibir($individual->data_registro, true) ?></td>
                 <td>
                     <?php echo $idIndividual ?> - 
                     <span id="nome_<?php echo $idInscricao ?>"><?php echo $nome ?></span><br/>
+                    <span id="profissao_<?php echo $idInscricao ?>"><?php echo $profissao ?></span><br/>
                     <span id="email_<?php echo $idInscricao ?>"><?php echo $individual->email ?></span><br/>
                     <?php echo utf8_encode($individual->instituicao) ?>
                 </td>
