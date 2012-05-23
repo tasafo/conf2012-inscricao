@@ -15,7 +15,7 @@ if (!$a_inscritos_empresas) {
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
-        <title>Inscritos por Empresa</title>
+        <title>Inscritos por Instituição</title>
         <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
         <script type="text/javascript" src="../view/js/jquery/jquery.alerts/jquery.alerts.js" ></script>
         <script type="text/javascript" src="../view/js/validacao.js" ></script>
@@ -24,17 +24,17 @@ if (!$a_inscritos_empresas) {
         <link href="css/admin.css" rel="stylesheet" />
     </head>
     <body>
-        <h2><center>Inscritos por Empresa</center></h2>
+        <h2><center>Inscritos por Instituição</center></h2>
         <table width="100%" border="1" class="bordasimples">
             <tr style="font-weight: bold">
                 <td align="center">Id Insc.</td>
                 <td align="center">Data Insc.</td>
-                <td>Id - Nome | E-mail</td>
+                <td>Id - Nome | Profissão | E-mail</td>
                 <td>Tipo Insc.</td>
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center">Pagto. | Compens.</td>
+                <td align="center">Pagamento:<br> Transação | Confirmação | Compensação</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -65,7 +65,7 @@ if (!$a_inscritos_empresas) {
 
             ?>
             <tr style="font-weight: bold; color: maroon">
-                <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s) da Empresa</td>
+                <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s)</td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorInscricaoEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorTaxaEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorSubtotalEmpresa) ?></td>
@@ -82,6 +82,9 @@ if (!$a_inscritos_empresas) {
 
                     if (empty($inscricao->data_pagamento)) {
                         $cor = "red";
+                        
+                        $dataTransacao = "";
+                        
                         $dataPagamento = "Dt. Pagto.: <input type='text' size=10 maxlength=10 name='dtPagamento' id='data_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
                         
                         $dataCompensacao = "Dt. Compens.: <input type='text' size=10 maxlength=10 name='dtCompensacao' id='compensacao_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
@@ -93,8 +96,9 @@ if (!$a_inscritos_empresas) {
                         $cortesia = "<input type='checkbox' name='cortesia' id='cortesia_$idEmpresa' value='N' onclick='marcaCortesia($idEmpresa)' />";
                     } else {
                         $cor = "blue";
-                        $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento);
-                        $dataCompensacao = empty($inscricao->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($inscricao->data_compensacao);
+                        $dataTransacao = Funcoes::formata_data_para_exibir($inscricao->data_criacao_transacao, true);
+                        $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento, true);
+                        $dataCompensacao = empty($inscricao->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($inscricao->data_compensacao, true);
                         $taxaPagamento = "";
                         $confirmar = "&nbsp;";
                         $cortesia = "&nbsp;";
@@ -103,13 +107,13 @@ if (!$a_inscritos_empresas) {
             <tr style="font-weight: bold; color: <?php echo $cor ?>">
                 <td colspan="2"></td>
                 <td>
-                    <?php echo $idEmpresa ?> - 
-                    <span id="nome_<?php echo $idEmpresa ?>"><?php echo utf8_encode($inscricao->nome_empresa) ?></span><br>
-                    <span id="email_<?php echo $idEmpresa ?>"><?php echo $inscricao->email_empresa ?></span><br>
-                    Resp.: <?php echo utf8_encode($inscricao->responsavel) ?>
+                    Instituição: <?php echo $idEmpresa ?> - <span id="nome_<?php echo $idEmpresa ?>"><?php echo utf8_encode($inscricao->nome_empresa) ?></span><br>
+                    <span id="email_<?php echo $idEmpresa ?>">E-mail: <?php echo $inscricao->email_empresa ?></span><br>
+                    Responsável: <?php echo utf8_encode($inscricao->responsavel) ?>
                 </td>
                 <td colspan="4"><span style="color: red" id="salvando_<?php echo $idEmpresa ?>"></span></td>
                 <td align="right">
+                    <div id="div_data_transacao_<?php echo $idEmpresa ?>"><?php echo $dataTransacao ?></div>
                     <div id="div_data_pagamento_<?php echo $idEmpresa ?>"><?php echo $dataPagamento ?></div>
                     <div id="div_data_compensacao_<?php echo $idEmpresa ?>"><?php echo $dataCompensacao ?></div>
                     <div id="div_taxa_pagamento_<?php echo $idEmpresa ?>"><?php echo $taxaPagamento ?></div>
@@ -128,9 +132,10 @@ if (!$a_inscritos_empresas) {
             ?>
             <tr>
                 <td align="center"><?php echo $idInscricao ?></td>
-                <td align="center"><?php echo Funcoes::formata_data_para_exibir($inscricao->data_registro) ?></td>
+                <td align="center"><?php echo Funcoes::formata_data_para_exibir($inscricao->data_registro, true) ?></td>
                 <td>
                     <?php echo $inscricao->id_individual . " - " . utf8_encode($inscricao->nome) ?><br>
+                    <?php echo utf8_encode($inscricao->profissao) ?><br>
                     <?php echo $inscricao->email ?>
                 </td>
                 <td><?php echo $inscricao->descricao_tipo_inscricao ?></td>
@@ -158,7 +163,7 @@ if (!$a_inscritos_empresas) {
             }
             ?>
             <tr style="font-weight: bold; color: maroon">
-                <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s) da Empresa</td>
+                <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s)</td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorInscricaoEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorTaxaEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorSubtotalEmpresa) ?></td>

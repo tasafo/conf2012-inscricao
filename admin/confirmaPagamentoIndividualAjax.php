@@ -7,6 +7,7 @@ $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 $xml .= "<agilidade>\n";
 
 $idInscricao = $_REQUEST['idInscricao'];
+$dtTransacao = $_REQUEST['dtPagamento'];
 $dtPagamento = $_REQUEST['dtPagamento'];
 $dtCompensacao = $_REQUEST['dtCompensacao'];
 $nome = $_REQUEST['nome'];
@@ -62,6 +63,7 @@ if ($cortesia == "S") {
 
 $o_inscricao = new InscricaoDAO();
 $o_inscricao->id = $idInscricao;
+$o_inscricao->data_criacao_transacao = Funcoes::formata_data_para_gravar($dtTransacao);
 $o_inscricao->data_pagamento = Funcoes::formata_data_para_gravar($dtPagamento);
 $o_inscricao->data_compensacao = Funcoes::formata_data_para_gravar($dtCompensacao);
 $o_inscricao->taxa = $txPagamento;
@@ -80,6 +82,7 @@ if (!$retorno) {
 }
 
 $xml .= "<mensagem>Operacao realizada com sucesso. O E-mail ja foi enviado para o inscrito$msg_recarregar</mensagem>";
+$xml .= "<dataTransacao>$dtPagamento</dataTransacao>";
 $xml .= "<dataPagamento>$dtPagamento</dataPagamento>";
 $xml .= "<dataCompensacao>$dtCompensacao</dataCompensacao>";
 $xml .= "<taxaPagamento>$txPagamento</taxaPagamento>";

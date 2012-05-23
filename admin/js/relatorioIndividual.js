@@ -59,10 +59,12 @@ function analisarRespostaPagamentoIndividual(xml) {
         
         return false;
     } else {
+        dataTransacao = $('dataTransacao', xml).text();
         dataPagamento = $('dataPagamento', xml).text();
         dataCompensacao = $('dataCompensacao', xml).text();
         mensagem = $('mensagem', xml).text();
 
+        $('#div_data_transacao_' + idInscricao).html(dataTransacao);
         $('#div_data_pagamento_' + idInscricao).html(dataPagamento);
         $('#div_data_compensacao_' + idInscricao).html(dataCompensacao);
         $('#div_taxa_pagamento_' + idInscricao).html("&nbsp;");

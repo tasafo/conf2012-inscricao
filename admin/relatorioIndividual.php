@@ -34,7 +34,7 @@ if (!$a_inscritos_individual) {
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center" width="20%">Pagto. | Compensação</td>
+                <td align="center" width="20%">Pagamento:<br>Transação | Confirmação | Compensação</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -63,6 +63,8 @@ if (!$a_inscritos_individual) {
                     $contadorEmAberto++;
                     $valorInscricaoEmAberto += $individual->valor;
 
+                    $dataTransacao = "";
+                    
                     $dataPagamento = "Dt. Pagto.: <input type='text' size=10 maxlength=10 name='dtPagamento' id='data_$idInscricao' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
                     
                     $dataCompensacao = "Dt. Compens.: <input type='text' size=10 maxlength=10 name='dtCompensacao' id='compensacao_$idInscricao' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
@@ -80,6 +82,7 @@ if (!$a_inscritos_individual) {
                     $valorInscricaoConfirmados += $individual->valor;
                     $valorTotalInscricao += $subTotalInscricao;
 
+                    $dataTransacao = Funcoes::formata_data_para_exibir($individual->data_criacao_transacao, true);
                     $dataPagamento = Funcoes::formata_data_para_exibir($individual->data_pagamento, true);
                     $dataCompensacao = empty($individual->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($individual->data_compensacao, true);
                     $taxaPagamento = "";
@@ -103,6 +106,7 @@ if (!$a_inscritos_individual) {
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($individual->taxa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($subTotalInscricao) ?></td>
                 <td align="right">
+                    <div id="div_data_transacao_<?php echo $idInscricao ?>"><?php echo $dataTransacao ?></div>
                     <div id="div_data_pagamento_<?php echo $idInscricao ?>"><?php echo $dataPagamento ?></div>
                     <div id="div_data_compensacao_<?php echo $idInscricao ?>"><?php echo $dataCompensacao ?></div>
                     <div id="div_taxa_pagamento_<?php echo $idInscricao ?>"><?php echo $taxaPagamento ?></div>

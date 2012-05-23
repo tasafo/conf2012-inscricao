@@ -56,10 +56,12 @@ function analisarRespostaPagamentoEmpresa(xml) {
 
         return false;
     } else {
+        dataTransacao = $('dataTransacao', xml).text();
         dataPagamento = $('dataPagamento', xml).text();
         dataCompensacao = $('dataCompensacao', xml).text();
         mensagem = $('mensagem', xml).text();
 
+        $('#div_data_transacao_' + idEmpresa).html(dataTransacao);
         $('#div_data_pagamento_' + idEmpresa).html(dataPagamento);
         $('#div_data_compensacao_' + idEmpresa).html(dataCompensacao);
         $('#div_taxa_pagamento_' + idEmpresa).html("&nbsp;");

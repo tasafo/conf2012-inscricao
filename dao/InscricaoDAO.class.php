@@ -118,7 +118,7 @@ class InscricaoDAO extends AbstractDAO {
         
         $condicao = ($todos == false) ? " AND ins.id_empresa = 0" : "";
     
-		$sql = "SELECT ins.id AS id_inscricao, ins.data_registro, ins.data_pagamento, ins.data_compensacao, ins.taxa,
+		$sql = "SELECT ins.id AS id_inscricao, ins.data_registro, ins.data_criacao_transacao, ins.data_pagamento, ins.data_compensacao, ins.taxa,
             ind.nome, ind.email, ind.instituicao, tip.descricao AS descricao_tipo_inscricao, tip.valor,
             ind.id AS id_individual, ind.situacao, ind.presente, ind.quem_registrou_presenca, ind.profissao
             FROM inscricao ins
@@ -132,9 +132,9 @@ class InscricaoDAO extends AbstractDAO {
 	}
 
 	function selecionar_inscritos_empresas() {
-		$sql = "SELECT ins.id AS id_inscricao, ins.data_registro, ins.data_pagamento, ins.data_compensacao, ind.nome, ind.email,
-            tip.descricao AS descricao_tipo_inscricao, tip.valor, emp.id AS id_empresa, emp.nome AS nome_empresa,
-            emp.email AS email_empresa, emp.responsavel, ind.id AS id_individual, ins.taxa
+		$sql = "SELECT ins.id AS id_inscricao, ins.data_registro, ins.data_criacao_transacao, ins.data_pagamento, ins.data_compensacao,
+            ind.nome, ind.email, tip.descricao AS descricao_tipo_inscricao, tip.valor, emp.id AS id_empresa, emp.nome AS nome_empresa,
+            emp.email AS email_empresa, emp.responsavel, ind.id AS id_individual, ins.taxa, ind.profissao
             FROM inscricao ins
             JOIN tipo_inscricao tip ON (ins.id_tipo_inscricao = tip.id)
             JOIN individual ind ON (ins.id = ind.id_inscricao)

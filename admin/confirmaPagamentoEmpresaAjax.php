@@ -7,6 +7,7 @@ $xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n";
 $xml .= "<agilidade>\n";
 
 $idEmpresa = $_REQUEST['idEmpresa'];
+$dtTransacao = $_REQUEST['dtPagamento'];
 $dtPagamento = $_REQUEST['dtPagamento'];
 $dtCompensacao = $_REQUEST['dtCompensacao'];
 $nome = $_REQUEST['nome'];
@@ -90,6 +91,7 @@ foreach ($a_funcionarios_empresa as $inscrito) {
     
     $o_inscricao = new InscricaoDAO();
     $o_inscricao->id = $inscrito->id;
+    $o_inscricao->data_criacao_transacao = Funcoes::formata_data_para_gravar($dtTransacao);
     $o_inscricao->data_pagamento = Funcoes::formata_data_para_gravar($dtPagamento);
     $o_inscricao->data_compensacao = Funcoes::formata_data_para_gravar($dtCompensacao);
     $o_inscricao->taxa = $valor_taxa;
@@ -116,6 +118,7 @@ if (!$retorno) {
 }
 
 $xml .= "<mensagem>Operacao realizada com sucesso. O E-mail ja foi enviado para a empresa e funcionarios$msg_recarregar</mensagem>";
+$xml .= "<dataTransacao>$dtPagamento</dataTransacao>";
 $xml .= "<dataPagamento>$dtPagamento</dataPagamento>";
 $xml .= "<dataCompensacao>$dtCompensacao</dataCompensacao>";
 $xml .= "<idEmpresa>$idEmpresa</idEmpresa>";
