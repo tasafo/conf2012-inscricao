@@ -100,6 +100,7 @@ if (!isset($_POST['id'])) {
                     <td>Nome</td>
                     <td>E-mail</td>
                     <td>Perfis</td>
+                    <td>Tem acesso</td>
                     <td>Tema da Palestra</td>
                 </tr>
                 <?php
@@ -111,6 +112,7 @@ if (!isset($_POST['id'])) {
                     <td><?php echo utf8_encode($usuario->nome) ?></td>
                     <td><?php echo $usuario->email ?></td>
                     <td><?php echo $usuario->perfis ?></td>
+                    <td style="color: <?php echo ($usuario->senha ? 'blue' : 'red') ?>" ><?php echo ($usuario->senha ? "Sim" : "Não") ?></td>
                     <td><?php echo utf8_encode($usuario->tema_palestra) ?></td>
                 <?php
                 }
