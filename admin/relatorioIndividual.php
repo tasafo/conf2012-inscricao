@@ -34,7 +34,7 @@ if (!$a_inscritos_individual) {
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center" width="20%">Pagamento:<br>Transação | Confirmação | Compensação</td>
+                <td align="center" width="20%">Pagamento:<br>Transação | Confirmação | Compensação | Quem registrou</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -57,12 +57,12 @@ if (!$a_inscritos_individual) {
                 $valorInscricao += $individual->valor;
                 $valorTaxaInscricao += $individual->taxa;
                 $subTotalInscricao = $individual->valor - $individual->taxa;
-                $quemRegistrou = $individual->quem_registrou;
 
                 if (empty($individual->data_pagamento)) {
                     $cor = "red";
                     $contadorEmAberto++;
                     $valorInscricaoEmAberto += $individual->valor;
+                    $quemRegistrou = "";
 
                     $dataTransacao = "";
                     
@@ -82,6 +82,7 @@ if (!$a_inscritos_individual) {
                     $contadorConfirmados++;
                     $valorInscricaoConfirmados += $individual->valor;
                     $valorTotalInscricao += $subTotalInscricao;
+                    $quemRegistrou = (empty($individual->quem_registrou) ? "sistema" : $individual->quem_registrou);
 
                     $dataTransacao = Funcoes::formata_data_para_exibir($individual->data_criacao_transacao, true);
                     $dataPagamento = Funcoes::formata_data_para_exibir($individual->data_pagamento, true);

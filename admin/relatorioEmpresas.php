@@ -34,7 +34,7 @@ if (!$a_inscritos_empresas) {
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center">Pagamento:<br> Transação | Confirmação | Compensação</td>
+                <td align="center">Pagamento:<br> Transação | Confirmação | Compensação | Quem registrou</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -79,10 +79,10 @@ if (!$a_inscritos_empresas) {
                     $valorTaxaEmpresa = 0;
                     $valorSubtotalEmpresa = 0;
                     $contadorEmpresa = 0;
-                    $quemRegistrou = $inscricao->quem_registrou;
 
                     if (empty($inscricao->data_pagamento)) {
                         $cor = "red";
+                        $quemRegistrou = "";
                         
                         $dataTransacao = "";
                         
@@ -97,6 +97,7 @@ if (!$a_inscritos_empresas) {
                         $cortesia = "<input type='checkbox' name='cortesia' id='cortesia_$idEmpresa' value='N' onclick='marcaCortesia($idEmpresa)' />";
                     } else {
                         $cor = "blue";
+                        $quemRegistrou = (empty($inscricao->quem_registrou) ? "sistema" : $inscricao->quem_registrou);
                         $dataTransacao = Funcoes::formata_data_para_exibir($inscricao->data_criacao_transacao, true);
                         $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento, true);
                         $dataCompensacao = empty($inscricao->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($inscricao->data_compensacao, true);
