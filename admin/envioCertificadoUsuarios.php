@@ -82,7 +82,7 @@ if (!isset($_POST['id'])) {
 <html lang="pt-br">
   <head>
     <meta charset="utf-8">
-        <title>Envio de Certificado aos Usuários</title>
+        <title>Organizadores, Palestrantes e Administradores</title>
         <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
         <script type="text/javascript" src="../view/js/jquery/jquery.alerts/jquery.alerts.js" ></script>
         <link href="css/admin.css" rel="stylesheet" />
