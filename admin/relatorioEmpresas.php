@@ -64,7 +64,7 @@ if (!$a_inscritos_empresas) {
                     if ($idEmpresa != 0) { // Imprimir o valor total de inscricoes da empresa
 
             ?>
-            <tr style="font-weight: bold; color: maroon">
+            <tr style="font-weight: bold">
                 <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s)</td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorInscricaoEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorTaxaEmpresa) ?></td>
@@ -96,7 +96,7 @@ if (!$a_inscritos_empresas) {
                         
                         $cortesia = "<input type='checkbox' name='cortesia' id='cortesia_$idEmpresa' value='N' onclick='marcaCortesia($idEmpresa)' />";
                     } else {
-                        $cor = "blue";
+                        $cor = ($inscricao->descricao_tipo_inscricao == "Cortesia" ? "maroon" : "blue");
                         $quemRegistrou = (empty($inscricao->quem_registrou) ? "sistema" : $inscricao->quem_registrou);
                         $dataTransacao = Funcoes::formata_data_para_exibir($inscricao->data_criacao_transacao, true);
                         $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento, true);
@@ -165,7 +165,7 @@ if (!$a_inscritos_empresas) {
                 }
             }
             ?>
-            <tr style="font-weight: bold; color: maroon">
+            <tr style="font-weight: bold">
                 <td colspan="4">[ <?php echo $contadorEmpresa ?> ] inscrito(s)</td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorInscricaoEmpresa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($valorTaxaEmpresa) ?></td>

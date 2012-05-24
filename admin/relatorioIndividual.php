@@ -78,7 +78,7 @@ if (!$a_inscritos_individual) {
                     
                     $cancelar = "<input type='button' name='cancelar' id='cancelar' value='Cancelar' onclick='confirmaCancelamento($idIndividual)' />";
                 } else {
-                    $cor = "blue";
+                    $cor = ($individual->descricao_tipo_inscricao == "Cortesia" ? "maroon" : "blue");
                     $contadorConfirmados++;
                     $valorInscricaoConfirmados += $individual->valor;
                     $valorTotalInscricao += $subTotalInscricao;
