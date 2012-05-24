@@ -29,12 +29,12 @@ if (!$a_inscritos_empresas) {
             <tr style="font-weight: bold">
                 <td align="center">Id Insc.</td>
                 <td align="center">Data Insc.</td>
-                <td>Id - Nome | Profissão | E-mail</td>
+                <td width="30%">Id - Nome | Profissão | E-mail</td>
                 <td>Tipo Insc.</td>
                 <td align="right">(+)Valor</td>
                 <td align="right">(-)Taxa</td>
                 <td align="right">(=)Total</td>
-                <td align="center">Pagamento:<br> Transação | Confirmação | Compensação | Quem registrou</td>
+                <td width="25%" align="center">Pagamento:<br> Transação | Confirmação | Compensação | Quem registrou</td>
                 <td>Cortesia?</td>
                 <td align="center">Operações</td>
             </tr>
@@ -88,7 +88,7 @@ if (!$a_inscritos_empresas) {
                         
                         $dataPagamento = "Dt. Pagto.: <input type='text' size=10 maxlength=10 name='dtPagamento' id='data_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
                         
-                        $dataCompensacao = "Dt. Compens.: <input type='text' size=10 maxlength=10 name='dtCompensacao' id='compensacao_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
+                        $dataCompensacao = "Dt. Comp.: <input type='text' size=10 maxlength=10 name='dtCompensacao' id='compensacao_$idEmpresa' onkeypress='mascara(this,data);' onblur='validaData(this);' />";
                         
                         $taxaPagamento = "Taxa: <input type='text' size=10 maxlength=10 name='taxaPagamento' id='taxa_$idEmpresa' onKeyUp='this.value = soValorC(this.value, 2)' style='text-align: right' />";
                         
