@@ -19,6 +19,7 @@ CREATE  TABLE IF NOT EXISTS inscricao (
   taxa DOUBLE NULL DEFAULT 0 ,
   id_tipo_inscricao INT NOT NULL ,
   id_empresa INT NULL DEFAULT 0,
+  quem_registrou VARCHAR(50) NULL ,
   PRIMARY KEY (id) ,
   INDEX fk_inscricao_tipo_inscricao1 (id_tipo_inscricao ASC) ,
   CONSTRAINT fk_inscricao_tipo_inscricao1

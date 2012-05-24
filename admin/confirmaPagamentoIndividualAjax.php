@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../general/autoload.php';
 
 header("Content-Type: application/xml; charset=utf-8");
@@ -67,6 +68,7 @@ $o_inscricao->data_criacao_transacao = Funcoes::formata_data_para_gravar($dtTran
 $o_inscricao->data_pagamento = Funcoes::formata_data_para_gravar($dtPagamento);
 $o_inscricao->data_compensacao = Funcoes::formata_data_para_gravar($dtCompensacao);
 $o_inscricao->taxa = $txPagamento;
+$o_inscricao->quem_registrou = $_SESSION['logado']['login'];
 
 if (!$o_inscricao->salva()) {
     $xml .= "<erro>Falha ao tentar atualizar o pagamento do usuario</erro>";

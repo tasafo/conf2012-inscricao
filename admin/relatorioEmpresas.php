@@ -79,6 +79,7 @@ if (!$a_inscritos_empresas) {
                     $valorTaxaEmpresa = 0;
                     $valorSubtotalEmpresa = 0;
                     $contadorEmpresa = 0;
+                    $quemRegistrou = $inscricao->quem_registrou;
 
                     if (empty($inscricao->data_pagamento)) {
                         $cor = "red";
@@ -117,6 +118,7 @@ if (!$a_inscritos_empresas) {
                     <div id="div_data_pagamento_<?php echo $idEmpresa ?>"><?php echo $dataPagamento ?></div>
                     <div id="div_data_compensacao_<?php echo $idEmpresa ?>"><?php echo $dataCompensacao ?></div>
                     <div id="div_taxa_pagamento_<?php echo $idEmpresa ?>"><?php echo $taxaPagamento ?></div>
+                    <div id="div_quem_registou_<?php echo $idEmpresa ?>"><?php echo $quemRegistrou ?></div>
                 </td>
                 <td align="center">
                     <div id="div_cortesia_<?php echo $idEmpresa ?>"><?php echo $cortesia ?></div>

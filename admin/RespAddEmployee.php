@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../general/autoload.php';
 
 $idEmpresa = $_REQUEST['hdnIdEmpresa'];
@@ -47,6 +48,7 @@ $o_inscricao->data_pagamento = $data_pagamento;
 $o_inscricao->data_compensacao = $data_compensacao;
 $o_inscricao->taxa = $taxa_pagamento;
 $o_inscricao->data_registro = date("Y-m-d H:i:s");
+$o_inscricao->quem_registrou = $_SESSION['logado']['login'];
 
 if (!$o_inscricao->salva()) {
     $o_transacao->rollback();
@@ -74,10 +76,11 @@ $a_funcionarios_inscritos = $o_inscricao->selecionar_funcionarios_inscritos($idE
 ?>
 <table width="100%" border="1">
 	<tr style="font-weight: bold; text-align: center">
-		<td>Inscri&ccedil;&atilde;o</td>
+		<td>Inscrição</td>
 		<td>Nome</td>
 		<td>E-mail</td>
-		<td>Inscrito como</td>
+		<td>Tipo Insc.</td>
+		<td>Operações</td>
 	</tr>
 	<?php foreach ($a_funcionarios_inscritos as $inscrito) { ?>
 	<tr>
@@ -85,6 +88,7 @@ $a_funcionarios_inscritos = $o_inscricao->selecionar_funcionarios_inscritos($idE
 		<td><?php echo trim(utf8_encode($inscrito->nome)) ?></td>
 		<td><?php echo $inscrito->email ?></td>
 		<td><?php echo $inscrito->descricao ?></td>
+		<td align="center"><input type='button' name='cancelar' id='cancelar' value='Cancelar' onclick='confirmaCancelamento(<?php echo $inscrito->id_individual ?>)' /></td>
 	</tr>
 	<?php } ?>
 </table>

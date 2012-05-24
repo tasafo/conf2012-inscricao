@@ -57,6 +57,7 @@ if (!$a_inscritos_individual) {
                 $valorInscricao += $individual->valor;
                 $valorTaxaInscricao += $individual->taxa;
                 $subTotalInscricao = $individual->valor - $individual->taxa;
+                $quemRegistrou = $individual->quem_registrou;
 
                 if (empty($individual->data_pagamento)) {
                     $cor = "red";
@@ -110,6 +111,7 @@ if (!$a_inscritos_individual) {
                     <div id="div_data_pagamento_<?php echo $idInscricao ?>"><?php echo $dataPagamento ?></div>
                     <div id="div_data_compensacao_<?php echo $idInscricao ?>"><?php echo $dataCompensacao ?></div>
                     <div id="div_taxa_pagamento_<?php echo $idInscricao ?>"><?php echo $taxaPagamento ?></div>
+                    <div id="div_quem_registou_<?php echo $idInscricao ?>"><?php echo $quemRegistrou ?></div>
                 </td>
                 <td align="center">
                     <div id="div_cortesia_<?php echo $idInscricao ?>"><?php echo $cortesia ?></div>

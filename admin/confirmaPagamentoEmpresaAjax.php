@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../general/autoload.php';
 
 header("Content-Type: application/xml; charset=utf-8");
@@ -51,6 +52,7 @@ if ($cortesia == "S") {
         $o_inscricao = new InscricaoDAO();
         $o_inscricao->id = $inscrito->id;
         $o_inscricao->id_tipo_inscricao = $id_tipo_inscricao;
+        $o_inscricao->quem_registrou = $_SESSION['logado']['login'];
 
         if (!$o_inscricao->salva()) {
             $xml .= "<erro>Falha ao tentar atualizar o tipo de inscricao dos usuarios</erro>";
@@ -95,6 +97,7 @@ foreach ($a_funcionarios_empresa as $inscrito) {
     $o_inscricao->data_pagamento = Funcoes::formata_data_para_gravar($dtPagamento);
     $o_inscricao->data_compensacao = Funcoes::formata_data_para_gravar($dtCompensacao);
     $o_inscricao->taxa = $valor_taxa;
+    $o_inscricao->quem_registrou = $_SESSION['logado']['login'];
 
     if (!$o_inscricao->salva()) {
         $xml .= "<erro>Falha ao tentar atualizar o pagamento do funcionario</erro>";
