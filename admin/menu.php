@@ -78,7 +78,7 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                     <td>Disponíveis</td>
                     <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
                 </tr>
-                <tr>
+                <tr style="color:maroon">
                     <td align="center"><?php echo $a_cortesias[0]->quantidade ?></td>
                     <td>Cortesias</td>
                     <td align="right"></td>
