@@ -7,7 +7,7 @@ if ($_POST['sql']) {
 
     $banco = new Banco();
     
-    $resultado = $banco->executar($sql);
+    $resultado = $banco->executar(utf8_decode($sql));
     
     $erro_sql = $banco->erro_sql;
 
