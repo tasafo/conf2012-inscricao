@@ -29,12 +29,13 @@ $a_funcionarios_inscritos = $o_inscricao->selecionar_funcionarios_inscritos($idE
         <script type="text/javascript" src="../view/js/jquery/jquery.alerts/jquery.alerts.js" ></script>
         <script type="text/javascript" src="js/employee.js" ></script>
         <link href="../view/js/jquery/jquery.alerts/jquery.alerts.css" rel="stylesheet" />
-        <link type="text/css" href="../view/css/validacao.css" rel="stylesheet" />
+        <link href="../view/css/validacao.css" rel="stylesheet" />
+        <link href="css/admin.css" rel="stylesheet" />
   	 </head>
 	<body>
         <form class="cmxform" id="frmFunc" name="formFuncionarios" action="" method="post">
             <input type="hidden" name="hdnIdEmpresa" id="hdnIdEmpresa" value="<?php echo $idEmpresa ?>" />
-            <table class="bordasimples" style="width: 750px">
+            <table style="width: 850px">
                 <tr>
                     <td colspan="2" align="center"><a href="relatorioEmpresas.php">Voltar para o relatório de empresas</a></td>
                 </tr>
@@ -81,11 +82,12 @@ $a_funcionarios_inscritos = $o_inscricao->selecionar_funcionarios_inscritos($idE
                 <tr>
                     <td colspan="2">
                         <div id="div_grade_funcionarios">
-                            <table width="100%" border="1">
+                            <table width="100%" border="1" class="bordasimples">
                                 <tr style="font-weight: bold; text-align: center">
                                     <td>Inscrição</td>
                                     <td>Nome</td>
                                     <td>E-mail</td>
+                                    <td>Profissão</td>
                                     <td>Tipo Insc.</td>
                                     <td>Operações</td>
                                 </tr>
@@ -94,7 +96,8 @@ $a_funcionarios_inscritos = $o_inscricao->selecionar_funcionarios_inscritos($idE
                                     <td align="center"><?php echo $inscrito->id ?></td>
                                     <td><?php echo trim(utf8_encode($inscrito->nome)) ?></td>
                                     <td><?php echo $inscrito->email ?></td>
-                                    <td><?php echo $inscrito->descricao ?></td>
+                                    <td><?php echo utf8_encode($inscrito->profissao) ?></td>
+                                    <td><?php echo utf8_encode($inscrito->descricao) ?></td>
                                     <td align="center"><input type='button' name='cancelar' id='cancelar' value='Cancelar' onclick='confirmaCancelamento(<?php echo $inscrito->id_individual ?>)' /></td>
                                 </tr>
                                 <?php } ?>

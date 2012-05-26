@@ -103,7 +103,7 @@ class InscricaoDAO extends AbstractDAO {
     }
 
 	function selecionar_funcionarios_inscritos($id_empresa) {
-		$sql = "SELECT ind.id AS id_individual, ind.nome, tip.valor, ind.email, tip.descricao, ins.id, ins.data_pagamento
+		$sql = "SELECT ind.id AS id_individual, ind.nome, tip.valor, ind.email, ind.profissao, tip.descricao, ins.id, ins.data_pagamento
             FROM individual ind
             JOIN inscricao ins ON (ind.id_inscricao = ins.id)
             JOIN tipo_inscricao tip ON (ins.id_tipo_inscricao = tip.id)
