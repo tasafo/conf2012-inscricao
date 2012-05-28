@@ -6,8 +6,8 @@ require_once '../util/constantes.php';
 $o_inscricao = new InscricaoDAO();
 $o_tipo_inscricao = new TipoInscricaoDAO();
 
-$a_total_inscritos = $o_inscricao->valor_total_inscritos();
-$o_total_inscritos = $a_total_inscritos[0];
+$a_total_inscritos_confirmados = $o_inscricao->valor_total_inscritos("C");
+$o_total_inscritos_confirmados = $a_total_inscritos_confirmados[0];
 
 $a_tipo_inscricao = $o_tipo_inscricao->busca("status = 'A'");
 
@@ -39,7 +39,7 @@ $dias_restantes = Funcoes::diferenca_entre_datas(date('d/m/Y'), DATA_FINAL_INSCR
 	</head>
     <body>
         <?php
-        if ($o_total_inscritos->quantidade >= QTD_MAXIMA_INSCRITOS)
+        if ($o_total_inscritos_confirmados->quantidade >= QTD_MAXIMA_INSCRITOS)
             die("<h1>As vagas foram preenchidas.<br><br>Inscrições encerradas.</h1>");
         
         if ($dias_restantes < 0)
