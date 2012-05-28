@@ -32,12 +32,15 @@ if (!isset($_POST['id'])) {
         if (strstr($perfis_usuario, $perfil)) {
           require_once(dirname(__FILE__) . "/../certificado/lib/fpdf/fpdf.php");
           require_once(dirname(__FILE__) . "/../certificado/lib/fpdi/fpdi.php");
+          require_once(dirname(__FILE__) . "/../certificado/lib/write_html.php");
 
           $nome_arquivo = "Certificado " . NOME_EVENTO . " $perfil " . Funcoes::remove_acentos(utf8_encode($nome)) . ".pdf";
           $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
           $arquivo_destino = dirname(__FILE__) . "/tmp/$nome_arquivo";
 
-          $pdf = new FPDI();
+          //$pdf = new FPDI();
+          $pdf = new PDF_HTML();
+          
           $pdf->AddPage('L');
           $pdf->setSourceFile($modelo);
           $tplIdx = $pdf->importPage(1);
@@ -49,7 +52,7 @@ if (!isset($_POST['id'])) {
           
           $titulo = "CERTIFICADO";
           
-          $corpo = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de $perfil$palestra.");
+          $corpo = utf8_decode("Certificamos que <b>$nome_convertido</b> participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de <b>$perfil</b>$palestra.");
           
           // Titulo
           $pdf->SetFont('Arial', 'B', 32);
@@ -62,13 +65,15 @@ if (!isset($_POST['id'])) {
           $pdf->SetTextColor(35, 142, 35); //Verde Floresta
           $pdf->SetY("65");
           $pdf->SetX("20");
-          $pdf->MultiCell(0, 9, $corpo, 0, 1, 'J');
+          
+          //$pdf->MultiCell(0, 9, $corpo, 0, 1, 'J');
+          $pdf->WriteHTML($corpo, 9);
         
           $pdf->Output($arquivo_destino, 'F');
           
-          $retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
+          //$retorno = EnviarEmail::enviar("envio_certificado", "", $email, $nome, 0, "", $arquivo_destino);
           
-          if (file_exists($arquivo_destino)) unlink($arquivo_destino);
+          //if (file_exists($arquivo_destino)) unlink($arquivo_destino);
       
           echo "<br><br>O certificado de $perfil de <b>" . utf8_encode($nome) . "</b>" . ($retorno ? "" : " nao") . " foi enviado com sucesso";
         }
