@@ -28,6 +28,7 @@ if (!$o_empresa->busca($idEmpresa)) {
 }
 
 // Obtem informacoes de pagamento dos funcionarios da empresa
+$data_criacao_transacao = "";
 $data_pagamento = "";
 $data_compensacao = "";
 $taxa_pagamento = 0;
@@ -36,6 +37,7 @@ $o_inscricao = new InscricaoDAO();
 $a_busca_inscricao = $o_inscricao->busca("id_empresa = $idEmpresa");
 
 if ($a_busca_inscricao) {
+    $data_criacao_transacao = $a_busca_inscricao[0]->data_criacao_transacao;
     $data_pagamento = $a_busca_inscricao[0]->data_pagamento;
     $data_compensacao = $a_busca_inscricao[0]->data_compensacao;
     $taxa_pagamento = $a_busca_inscricao[0]->taxa;
@@ -44,6 +46,7 @@ if ($a_busca_inscricao) {
 $o_inscricao = new InscricaoDAO();
 $o_inscricao->id_empresa = $idEmpresa;
 $o_inscricao->id_tipo_inscricao = $categoria_inscricao;
+$o_inscricao->data_criacao_transacao = $data_criacao_transacao;
 $o_inscricao->data_pagamento = $data_pagamento;
 $o_inscricao->data_compensacao = $data_compensacao;
 $o_inscricao->taxa = $taxa_pagamento;
