@@ -22,7 +22,6 @@ if (!$a_inscritos) {
         <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
         <script type="text/javascript" src="../view/js/jquery/jquery.alerts/jquery.alerts.js" ></script>
         <script type="text/javascript" src="js/manutencaoInscritos.js" ></script>
-        <script type="text/javascript" src="js/marcarPresenca.js" ></script>
         <link href="../view/js/jquery/jquery.alerts/jquery.alerts.css" rel="stylesheet" />
         <link href="css/admin.css" rel="stylesheet" />
     </head>
@@ -34,7 +33,6 @@ if (!$a_inscritos) {
             <b>Novo nome para a instituição:</b> <input type="text" id="novo_nome" name="novo_nome" size="30" maxlength="50" />
             <input type='button' name='mudar' id='mudar' value='Mudar' /><br><br>
             <input type='button' name='reativar' id='reativar' value='Reativar cancelados' /><br><br>
-            <input type='button' name='presenca' id='presenca' value='Marcar presença' /><br><br>
             <center><span id="processando" style="color: red"></span></center>
             <table width="100%" border="1" class="bordasimples">
                 <tr style="font-weight: bold">
