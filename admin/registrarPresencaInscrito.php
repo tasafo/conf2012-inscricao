@@ -28,7 +28,7 @@ if (isset($_POST['nome'])) {
             <h2>Registrar presença do inscrito</h2>
         </center>
         <form id="form" name="form" method="post" action="registrarPresencaInscrito.php">
-            <b>Informe o início ou nome completo:</b> <input type="text" id="nome" name="nome" size="50" maxlength="50" />
+            <b>Informe o nome do inscrito:</b> <input type="text" id="nome" name="nome" size="50" maxlength="50" />
             <input type='submit' name='buscar' id='buscar' value='Buscar' /><br><br>
             <center><span id="processando" style="color: red"></span></center>
             
