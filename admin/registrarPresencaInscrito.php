@@ -5,10 +5,10 @@ require_once '../general/autoload.php';
 if (isset($_POST['nome'])) {
     $nome = trim($_POST['nome']);
     
-    $o_individual = new IndividualDAO();
+    $o_inscricao = new InscricaoDAO();
 
     if ($nome != "")
-        $a_individuos = $o_individual->busca("nome LIKE '$nome%'", "nome");
+        $a_inscritos = $o_inscricao->lista_para_confirmar_presenca("nome LIKE '%$nome%'", "nome");
 }
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ if (isset($_POST['nome'])) {
             <input type='submit' name='buscar' id='buscar' value='Buscar' /><br><br>
             <center><span id="processando" style="color: red"></span></center>
             
-            <?php if ($a_individuos) { ?>
+            <?php if ($a_inscritos) { ?>
             <center><br><input type='button' name='presenca' id='presenca' value='Marcar presença' /></center><br>
             <table width="100%" border="1" class="bordasimples">
                 <tr style="font-weight: bold">
@@ -43,31 +43,37 @@ if (isset($_POST['nome'])) {
                     <td align="center">Presente</td>
                     <td>Quem registrou</td>
                     <td align="center">Situação</td>
+                    <td align="center">Pagamento</td>
                 </tr>
                 <?php
-                foreach ($a_individuos as $individuo) {
+                foreach ($a_inscritos as $inscrito) {
                     $situacao = "<span style='color:red'>Cancelado</span>";
-                    if ($individuo->situacao == "A")
+                    if ($inscrito->situacao == "A")
                         $situacao = "<span style='color:blue'>Ativo</span>";
                     
                     $presente = "<span style='color:red'>Não</span>";
-                    if ($individuo->presente == "S")
+                    if ($inscrito->presente == "S")
                         $presente = "<span style='color:blue'>Sim</span>";
+
+                    $pagamento = "<span style='color:red'>Não realizado</span>";
+                    if (!empty($inscrito->data_pagamento))
+                        $pagamento = "<span style='color:blue'>Confirmado</span>";    
                 ?>
                 <tr>
                     <td align="center">
-                        <?php if ($individuo->presente != "S" && $individuo->situacao == "A") { ?>
-                        <input type='checkbox' name='id[]' value='<?php echo $individuo->id ?>' />
+                        <?php if ($inscrito->presente != "S" && $inscrito->situacao == "A" && !empty($inscrito->data_pagamento)) { ?>
+                        <input type='checkbox' name='id[]' value='<?php echo $inscrito->id ?>' />
                         <?php } else { ?>
                         &nbsp;
                         <?php } ?>
                     </td>
-                    <td><?php echo utf8_encode($individuo->nome) ?></td>
-                    <td><?php echo $individuo->email ?></td>
-                    <td><?php echo utf8_encode($individuo->instituicao) ?></td>
+                    <td><?php echo utf8_encode($inscrito->nome) ?></td>
+                    <td><?php echo $inscrito->email ?></td>
+                    <td><?php echo utf8_encode($inscrito->instituicao) ?></td>
                     <td align="center"><?php echo $presente ?></td>
-                    <td><?php echo $individuo->quem_registrou_presenca ?></td>
+                    <td><?php echo $inscrito->quem_registrou_presenca ?></td>
                     <td align="center"><?php echo $situacao ?></td>
+                    <td align="center"><?php echo $pagamento ?></td>
                 <?php
                 }
                 ?>

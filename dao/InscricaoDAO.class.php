@@ -19,6 +19,14 @@ class InscricaoDAO extends AbstractDAO {
 		parent::__construct($this);
 	}
 	
+    function lista_para_confirmar_presenca($filtro, $ordem) {
+        $sql = "SELECT ind.*, ins.data_pagamento FROM individual ind
+            JOIN inscricao ins ON (ind.id_inscricao = ins.id)
+            WHERE $filtro";
+
+        return $this->resultado_consulta($sql);
+    }
+
     function inscritos_por_intervalo($inicio, $fim, $inadimplentes = false, $incluir_cancelados = false, $adimplentes = false, $presentes = false, $faltosos = false) {
         $filtro_inadimplentes = ($inadimplentes) ? "AND ins.data_pagamento IS NULL AND ins.id_empresa = 0" : "";
         
