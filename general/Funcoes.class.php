@@ -60,40 +60,6 @@ class Funcoes {
 		return $valor;
 	}
 	
-	public static function lista_estados() {
-		$aEstados = array(
-            "AC" => "Acre",
-            "AL" => "Alagoas",
-            "AP" => "Amap&aacute;",
-            "AM" => "Amazonas",
-            "BA" => "Bahia",
-            "CE" => "Cear&aacute;",
-            "DF" => "Distrito Federal",
-            "ES" => "Espi&iacute;rito Santo",
-            "GO" => "Goi&aacute;s",
-            "MA" => "Maranh&atilde;o",
-            "MS" => "Mato Grosso do Sul",
-            "MT" => "Mato Grosso",
-            "MG" => "Minas Gerais",
-            "PA" => "Par&aacute;",
-            "PB" => "Para&iacute;ba",
-            "PR" => "Paran&aacute;",
-            "PE" => "Pernambuco",
-            "PI" => "Piau&iacute;",
-            "RJ" => "Rio de Janeiro",
-            "RN" => "Rio Grande do Norte",
-            "RS" => "Rio Grande do Sul",
-            "RO" => "Rond&ocirc;nia",
-            "RR" => "Roraima",
-            "SC" => "Santa Catarina",
-            "SP" => "S&atilde;o Paulo",
-            "SE" => "Sergipe",
-            "TO" => "Tocantins"
-		);
-		
-		return $aEstados;
-	}
-
     public static function remove_acentos($texto) {
         $array1 = array( "á", "à", "â", "ã", "ä", "é", "è", "ê", "ë", "ẽ", "í", "ì", "î", "ï", "ĩ", "ó", "ò", "ô", "õ", "ö", "ú", "ù", "û", "ü", "ũ", "ç"
                 , "Á", "À", "Â", "Ã", "Ä", "É", "È", "Ê", "Ë", "Ẽ", "Í", "Ì", "Î", "Ï", "Ĩ", "Ó", "Ò", "Ô", "Õ", "Ö", "Ú", "Ù", "Û", "Ü", "Ũ", "Ç" );
