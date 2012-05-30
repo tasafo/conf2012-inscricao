@@ -50,8 +50,8 @@ class EnviarEmail {
                 if (file_exists($anexo))
                     $mail->AddAttachment($anexo);
                 
-                $texto .= "Queremos agradecer sua participa&ccedil;&atilde;o no <b>" . NOME_EVENTO . "</b>.<br><br>
-                    Estamos enviando em anexo seu certificado e at&eacute; o pr&oacute;ximo evento.<br><br>";                
+                $texto .= "Queremos agradecer sua participa&ccedil;&atilde;o e colabora&ccedil;&atilde;o no <b>" . NOME_EVENTO . "</b>.<br><br>
+                    Tamb&eacute;m estamos enviando, em anexo, seu certificado de participa&ccedil;&atilde;o. Nos vemos nos pr&oacute;ximos eventos!<br><br>";                
                 break;
                 
             default:

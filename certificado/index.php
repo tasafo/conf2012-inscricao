@@ -4,6 +4,7 @@ require_once '../util/constantes.php';
 
 $msg = "";
 $cor = "red";
+$caminho = dirname(__FILE__);
 
 if (isset($_POST['email'])) {
     $email = trim($_POST['email']);
@@ -14,23 +15,22 @@ if (isset($_POST['email'])) {
     
     if ($a_individual) {
         $nome = utf8_encode($a_individual[0]->nome);
+
+        require_once("$caminho/lib/write_html.php");
         
-        require_once(dirname(__FILE__) . "/lib/fpdf/fpdf.php");
-        require_once(dirname(__FILE__) . "/lib/fpdi/fpdi.php");
-        
-        $modelo = dirname(__FILE__) . "/template_certificado.pdf";
+        $modelo = "$caminho/template_certificado.pdf";
         
         $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos($nome) . ".pdf";
         $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
-        $arquivo_destino = dirname(__FILE__) . "/tmp/$nome_arquivo";
+        $arquivo_destino = "$caminho/tmp/$nome_arquivo";
 
         $nome_convertido = Funcoes::special_ucwords($nome);
         
         $titulo = "CERTIFICADO";
 
-        $corpo = utf8_decode("Certificamos que $nome_convertido participou do evento " . NOME_EVENTO . ", realizado de 9 a 10 de Junho de 2012, no campus do CESUPA Almirante Barroso, Belém (Pa), com carga horária de 16 horas, na qualidade de participante.");
+        $corpo = utf8_decode("Certificamos que <b>$nome_convertido</b> participou do evento " . NOME_EVENTO . ", realizado " . PERIODO_EVENTO . ",  " . LOCAL_EVENTO . ", com carga horária de " . CARGA_HORARIA_EVENTO ." horas, na qualidade de <b>participante</b>.");
 
-        $pdf = new FPDI();
+        $pdf = new PDF_HTML();
         $pdf->AddPage('L');
         $pdf->setSourceFile($modelo);
         $tplIdx = $pdf->importPage(1);
@@ -47,7 +47,7 @@ if (isset($_POST['email'])) {
         $pdf->SetTextColor(35, 142, 35); //Verde Floresta
         $pdf->SetY("65");
         $pdf->SetX("20");
-        $pdf->MultiCell(0, 9, $corpo, 0, 1, 'J');
+        $pdf->WriteHTML($corpo, 9);
 
         $pdf->Output($arquivo_destino, 'F');
         

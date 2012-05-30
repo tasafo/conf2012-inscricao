@@ -1,5 +1,4 @@
 <?php
-//require('fpdf/fpdf.php');
 require_once('fpdi/fpdi.php');
 
 class PDF_HTML extends FPDI {
