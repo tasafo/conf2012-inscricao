@@ -79,8 +79,8 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]
                     <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
                 </tr>
                 <tr>
-                    <td align="center"><?php echo $a_total_saques[0]->total ?></td>
-                    <td>Saques</td>
+                    <td>&nbsp;</td>
+                    <td>Saques (<?php echo $a_total_saques[0]->total ?>)</td>
                     <td align="right">- <?php echo Funcoes::formata_moeda_para_exibir($a_total_saques[0]->valor) ?></td>
                 </tr>
                 <tr>
