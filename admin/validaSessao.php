@@ -7,6 +7,7 @@ $perfil_usuario_logado = $_SESSION['logado']['perfil'];
 
 $a_menu = array(
     array('sql', '', 'admin'),
+    array('addEmployee', '', 'admin'),
     array('relatorioIndividual', 'Inscrições Individuais', 'admin'),
     array('relatorioEmpresas', 'Inscrições por Instituições', 'admin'),
     array('relatorioInscritos', 'Listagem dos Inscritos Pagantes', 'admin, organizador'),

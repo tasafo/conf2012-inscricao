@@ -1,4 +1,5 @@
 <?php
+require 'validaSessao.php';
 require_once '../general/autoload.php';
 
 $idEmpresa = $_REQUEST['id'];
