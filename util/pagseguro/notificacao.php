@@ -25,8 +25,6 @@ if (count($_POST) > 0) {
     );
 
     if ($notification_type == 'transaction' AND !empty($notification_code)) {
-        //$url_notificacao = "http://localhost/~luiz/tasafo.org/2012/conf/inscricao/util/pagseguro/notificacao_teste.php?code=" . $notification_code . "&email=" . EMAIL_COBRANCA . "&token=" . TOKEN;
-        
         $url_notificacao = "https://ws.pagseguro.uol.com.br/v2/transactions/notifications/$notification_code?email=" . EMAIL_COBRANCA . "&token=" . TOKEN; 
 
         $xml = simplexml_load_file($url_notificacao);
