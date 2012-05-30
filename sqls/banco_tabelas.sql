@@ -68,4 +68,14 @@ CREATE TABLE IF NOT EXISTS usuario (
   tema_palestra varchar(100) NOT NULL,
   PRIMARY KEY (id)
 )
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT=1;
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS saque (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  data_lancamento timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  data_saque DATE NOT NULL ,
+  valor decimal(10,0) NOT NULL DEFAULT '0',
+  quem_registrou VARCHAR(50) NULL ,
+  PRIMARY KEY (`id`)
+)
+ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;

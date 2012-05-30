@@ -18,7 +18,8 @@ $a_menu = array(
     array('importarPagamentos', 'Importar Pagamentos do Pagseguro', 'admin'),
     array('envioEmailAviso', 'Enviar avisos por e-mail', 'admin'),
     array('envioCertificadoUsuarios', 'Organizadores, Palestrantes e Administradores', 'admin'),
-    array('registrarPresencaInscrito', 'Registrar Presença do Inscrito', 'admin, organizador')
+    array('registrarPresencaInscrito', 'Registrar Presença do Inscrito', 'admin, organizador'),
+    array('saques', 'Saques', 'admin, organizador')
 );
 
 if (!$_SESSION['logado']) {

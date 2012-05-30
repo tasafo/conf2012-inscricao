@@ -3,6 +3,8 @@ require 'validaSessao.php';
 require_once '../general/autoload.php';
 
 $o_inscricao = new InscricaoDAO();
+$o_saque = new SaqueDAO();
+
 $a_em_aberto = $o_inscricao->valor_total_inscritos("A");
 $a_confirmados = $o_inscricao->valor_total_inscritos("C");
 $a_confirmados_a_receber = $o_inscricao->valor_total_inscritos("CR");
@@ -10,6 +12,9 @@ $a_confirmados_disponivel = $o_inscricao->valor_total_inscritos("CD");
 $a_cortesias = $o_inscricao->valor_total_inscritos("CO");
 $a_cancelados = $o_inscricao->valor_total_inscritos("CA");
 $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
+$a_total_saques = $o_saque->total_saques();
+
+$subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]->valor + $a_confirmados_a_receber[0]->valor;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -57,8 +62,8 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                 </tr>
                 <tr style="color:red; font-weight:bold">
                     <td align="center"><?php echo $a_em_aberto[0]->quantidade ?></td>
-                    <td>Em aberto (+)</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
+                    <td>Em aberto</td>
+                    <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
                 </tr>
                 <tr style="color:maroon; font-weight:bold">
                     <td align="center"><?php echo $a_cancelados[0]->quantidade ?></td>
@@ -69,14 +74,19 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                     <td colspan="3" style="color:blue; font-weight: bold; text-align:center">Confirmadas</td>
                 </tr>
                 <tr>
-                    <td align="center"><?php echo $a_confirmados_a_receber[0]->quantidade ?></td>
-                    <td>A receber</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></td>
+                    <td align="center"><?php echo $a_confirmados_disponivel[0]->quantidade ?></td>
+                    <td>Disponível</td>
+                    <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
                 </tr>
                 <tr>
-                    <td align="center"><?php echo $a_confirmados_disponivel[0]->quantidade ?></td>
-                    <td>Disponíveis</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
+                    <td align="center"><?php echo $a_total_saques[0]->total ?></td>
+                    <td>Saques</td>
+                    <td align="right">- <?php echo Funcoes::formata_moeda_para_exibir($a_total_saques[0]->valor) ?></td>
+                </tr>
+                <tr>
+                    <td align="center"><?php echo $a_confirmados_a_receber[0]->quantidade ?></td>
+                    <td>A receber</td>
+                    <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></td>
                 </tr>
                 <tr style="color:maroon">
                     <td align="center"><?php echo $a_cortesias[0]->quantidade ?></td>
@@ -85,16 +95,16 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
                 </tr>
                 <tr style="color:blue; font-weight:bold">
                     <td align="center"><?php echo $a_confirmados[0]->quantidade ?></td>
-                    <td>Subtotal (+)</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_confirmados[0]->valor) ?></td>
+                    <td>Subtotal</td>
+                    <td align="right">= <?php echo Funcoes::formata_moeda_para_exibir($subtotal_confirmados) ?></td>
                 </tr>
                 <tr>
                     <td colspan="3" style="color:green; font-weight: bold; text-align:center">Montante</td>
                 </tr>
                 <tr style="color:green; font-weight:bold">
                     <td align="center"><?php echo $a_em_aberto[0]->quantidade + $a_confirmados[0]->quantidade ?></td>
-                    <td>Total (=)</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor + $a_confirmados[0]->valor) ?></td>
+                    <td>Total</td>
+                    <td align="right">= <?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor + $subtotal_confirmados) ?></td>
                 </tr>
             </table>
         <?php
