@@ -36,7 +36,7 @@ if (!isset($_POST['id'])) {
 
           $nome_arquivo = "Certificado " . NOME_EVENTO . " $perfil " . Funcoes::remove_acentos(utf8_encode($nome)) . ".pdf";
           $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
-          $arquivo_destino = "$caminho/tmp/$nome_arquivo";
+          $arquivo_destino = "$caminho/../temp/$nome_arquivo";
 
           $pdf = new PDF_HTML();
           $pdf->AddPage('L');

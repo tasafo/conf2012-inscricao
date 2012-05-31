@@ -11,7 +11,7 @@ if ($_FILES['arquivo']) {
     if ($_FILES['arquivo']['error'] == 0) {
         $arquivo_temp = $_FILES['arquivo']['tmp_name'];
         $nome_arquivo = $_FILES['arquivo']['name'];
-        $diretorio = dirname(__FILE__) . "/tmp";
+        $diretorio = dirname(__FILE__) . "/../temp";
         $arquivo_copiado = "$diretorio/$nome_arquivo";
 
         if (!move_uploaded_file($arquivo_temp, $arquivo_copiado)) {
@@ -148,6 +148,8 @@ if ($_FILES['arquivo']) {
                             }
                         }
                     }
+                    
+                    if (file_exists($arquivo_copiado)) unlink($arquivo_copiado);
                 }
             }
         }

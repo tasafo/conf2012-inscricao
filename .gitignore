@@ -1,5 +1,3 @@
-admin/tmp/
-certificado/tmp/
 certificado/*.pdf
 util/constantes.php
 util/constantes_*.php

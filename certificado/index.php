@@ -22,7 +22,7 @@ if (isset($_POST['email'])) {
         
         $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos($nome) . ".pdf";
         $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));
-        $arquivo_destino = "$caminho/tmp/$nome_arquivo";
+        $arquivo_destino = "$caminho/../temp/$nome_arquivo";
 
         $nome_convertido = Funcoes::special_ucwords($nome);
         
