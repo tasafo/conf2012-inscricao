@@ -52,7 +52,7 @@ $dias_restantes = Funcoes::diferenca_entre_datas(date('d/m/Y'), DATA_FINAL_INSCR
 		    <ol></ol>
 		</div>
 		<form class="cmxform" id="form" name="formIndividual" action="" method="post">
-			<table class="bordasimples">
+			<table class="bordasimples" style="width: 500px">
 				<tr align="center">
                 <?php if (count($a_tipo_inscricao) == 1) { ?>
 					<td align="left" width="40%">Valor</td>
@@ -70,33 +70,33 @@ $dias_restantes = Funcoes::diferenca_entre_datas(date('d/m/Y'), DATA_FINAL_INSCR
 				<?php } ?>
 				</tr>
 				<tr>
-					<td align="left"><label for="nome">Nome</label></td>
+					<td align="left"><label for="nome">Seu nome completo</label></td>
 					<td align="left">
 					    <input type="text" name="nome" class="caixa" id="nome" maxlength="60" size="35" />
 				    </td>
 				</tr>
 				<tr>
-					<td align="left"><label for="email">E-mail</label></td>
+					<td align="left"><label for="email">Seu e-mail</label></td>
 					<td align="left">
 					    <input type="text" name="email" class="caixa" id="email" maxlength="50" size="35" />
 					</td>
 				</tr>
                 <tr>
-                    <td align="left"><label for="profissao">Profissão</label></td>
+                    <td align="left"><label for="profissao">Sua profissão</label></td>
                     <td align="left">
                         <input type="text" name="profissao" class="caixa" id="profissao" maxlength="50" size="35" />
                     </td>
                 </tr>
 				<tr>
-					<td align="left"><label for="instituicao">Instituição</label></td>
+					<td align="left"><label for="instituicao">Sua instituição ou empresa</label></td>
 					<td align="left">
 					    <input type="text" name="instituicao" class="caixa" id="instituicao" maxlength="100" size="35" />
 					</td>
 				</tr>
 				<tr>
-					<td align="left"><label for="cep">CEP</label></td>
+					<td align="left"><label for="cep">Seu CEP ( somente números )</label></td>
 					<td align="left">
-					   <input type="text" name="cep" id="cep" class="caixa" maxlength="8" size="9" onKeyPress="mascara(this,apenasNumeros);" /> ( somente números )
+					   <input type="text" name="cep" id="cep" class="caixa" maxlength="8" size="9" onKeyPress="mascara(this,apenasNumeros);" /> ( será utilizado no PagSeguro )
 					</td>
 				</tr>
                 <tr>
