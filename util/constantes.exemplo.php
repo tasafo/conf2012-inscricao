@@ -18,6 +18,7 @@ define('HOME_PAGE', 'http://www.site.com.br/');
 define('PERIODO_EVENTO', 'de <dia> a <dia> de <mes> de <ano>');
 define('LOCAL_EVENTO', 'no <local>, <cidade> (<uf>)');
 define('CARGA_HORARIA_EVENTO', '8');
+define('TEMPLATE_CERTIFICADO', 'arquivo de template');
 
 // E-MAIL E TOKEN DA CONTA DO PAGSEGURO PARA OS PAGAMENTOS SEREM EFETUADOS NELA
 define('EMAIL_COBRANCA', 'nome@mail.com.br');

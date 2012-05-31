@@ -18,7 +18,7 @@ if (isset($_POST['email'])) {
 
         require_once("$caminho/lib/write_html.php");
         
-        $modelo = "$caminho/template_certificado.pdf";
+        $modelo = "$caminho/" . TEMPLATE_CERTIFICADO;
         
         $nome_arquivo = "Certificado " . NOME_EVENTO . " participante " . Funcoes::remove_acentos($nome) . ".pdf";
         $nome_arquivo = strtolower(str_replace(" ", "_", $nome_arquivo));

@@ -22,7 +22,7 @@ if (!isset($_POST['id'])) {
   $a_usuarios = $o_usuario->busca("id IN($selecionados)", "perfis, nome");
   
   if ($a_usuarios) {
-    $modelo = "$caminho/../certificado/template_certificado.pdf";
+    $modelo = "$caminho/../certificado/" . TEMPLATE_CERTIFICADO;
 
     foreach($a_usuarios as $usuario) {
       $nome = $usuario->nome;
