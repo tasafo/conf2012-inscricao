@@ -14,11 +14,11 @@ class EnviarEmail {
 
         $tipoCapitulado = ucfirst($tipo);
 
-        $saudacao = $tipo == "individual" ? "Ol&aacute; " : "";
+        $saudacao = $tipo == "individual" ? "Olá " : "";
         
         $primeiro_nome = array_shift(explode(" ", $nome));
         
-        $texto = "<html><body>$saudacao<b>$primeiro_nome</b>,<br><br>";
+        $texto = "<!DOCTYPE html><html lang='pt-br'><head><meta charset='utf-8'></head><body>$saudacao<b>$primeiro_nome</b>,<br><br>";
 
         switch ($motivo) {
             case 'cadastro':
