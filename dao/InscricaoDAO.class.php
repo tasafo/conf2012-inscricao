@@ -19,6 +19,14 @@ class InscricaoDAO extends AbstractDAO {
 		parent::__construct($this);
 	}
 	
+    function total_de_presentes() {
+        $sql = "SELECT COUNT(*) AS quantidade
+            FROM individual
+            WHERE presente = 'S' AND situacao = 'A'";
+
+        return $this->resultado_consulta($sql);
+    }
+    
     function lista_para_confirmar_presenca($filtro, $ordem) {
         $sql = "SELECT ind.*, ins.data_pagamento FROM individual ind
             JOIN inscricao ins ON (ind.id_inscricao = ins.id)
