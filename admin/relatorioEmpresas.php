@@ -82,7 +82,7 @@ if (!$a_inscritos_empresas) {
 
                     if (empty($inscricao->data_pagamento)) {
                         $cor = "red";
-                        $quemRegistrou = "";
+                        //$quemRegistrou = "";
                         
                         $dataTransacao = "";
                         
@@ -97,7 +97,7 @@ if (!$a_inscritos_empresas) {
                         $cortesia = "<input type='checkbox' name='cortesia' id='cortesia_$idEmpresa' value='N' onclick='marcaCortesia($idEmpresa)' />";
                     } else {
                         $cor = ($inscricao->descricao_tipo_inscricao == "Cortesia" ? "maroon" : "blue");
-                        $quemRegistrou = (empty($inscricao->quem_registrou) ? "sistema" : $inscricao->quem_registrou);
+                        //$quemRegistrou = (empty($inscricao->quem_registrou) ? "sistema" : $inscricao->quem_registrou);
                         $dataTransacao = Funcoes::formata_data_para_exibir($inscricao->data_criacao_transacao, true);
                         $dataPagamento = Funcoes::formata_data_para_exibir($inscricao->data_pagamento, true);
                         $dataCompensacao = empty($inscricao->data_compensacao) ? "" : Funcoes::formata_data_para_exibir($inscricao->data_compensacao, true);
@@ -145,7 +145,16 @@ if (!$a_inscritos_empresas) {
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($inscricao->valor) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($inscricao->taxa) ?></td>
                 <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($subTotalInscricao) ?></td>
-                <td colspan="3"></td>
+                <td align="right">
+                    <?php
+                    if (!empty($inscricao->data_pagamento)) {
+                        echo Funcoes::formata_data_para_exibir($inscricao->data_pagamento);
+                        echo "<br>";
+                        echo (empty($inscricao->quem_registrou) ? "sistema" : $inscricao->quem_registrou);
+                    }
+                    ?>
+                </td>
+                <td colspan="2"></td>
             </tr>
             <?php
                 $valorInscricaoEmpresa += $inscricao->valor;
