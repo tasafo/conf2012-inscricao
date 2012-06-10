@@ -4,9 +4,9 @@ require_once '../general/autoload.php';
 
 $o_inscricao = new InscricaoDAO();
 
-$a_inscritos_individual = $o_inscricao->selecionar_inscritos_individual(false, "ind.nome");
+$a_presentes = $o_inscricao->lista_de_presentes();
 
-if (!$a_inscritos_individual) {
+if (!$a_presentes) {
     die("<h2>Nenhuma inscri&ccedil;&atilde;o encontrada</h2></center>");
 }
 ?>
@@ -23,27 +23,17 @@ if (!$a_inscritos_individual) {
             <tr style="font-weight: bold">
                 <td>Nome</td>
                 <td>E-mail</td>
-                <td>Categoria</td>
                 <td>Instituição</td>
             </tr>
-            <?php
-            $contador = 0;
-            foreach ($a_inscritos_individual as $individual) {
-                if ($individual->presente == "S") {
-                    $contador++;
-            ?>
+            <?php foreach ($a_presentes as $presente) { ?>
             <tr>
-                <td><?php echo utf8_encode($individual->nome) ?></td>
-                <td><?php echo $individual->email ?></td>
-                <td><?php echo $individual->descricao_tipo_inscricao ?></td>
-                <td><?php echo utf8_encode($individual->instituicao) ?></td>
+                <td><?php echo utf8_encode($presente->nome) ?></td>
+                <td><?php echo $presente->email ?></td>
+                <td><?php echo utf8_encode($presente->instituicao) ?></td>
             </tr>
-            <?php
-                }
-            }
-            ?>
+            <?php } ?>
             <tr style="font-weight: bold;">
-                <td colspan="4"><?php echo $contador ?> inscrito(s) presente(s)</td>
+                <td colspan="4"><?php echo count($a_presentes) ?> inscrito(s) presente(s)</td>
             </tr>
         </table>
     </body>

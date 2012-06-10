@@ -19,6 +19,15 @@ class InscricaoDAO extends AbstractDAO {
 		parent::__construct($this);
 	}
 	
+    function lista_de_presentes() {
+        $sql = "SELECT nome, email, instituicao
+            FROM individual
+            WHERE presente = 'S' AND situacao = 'A'
+            ORDER BY nome";
+
+        return $this->resultado_consulta($sql);
+    }
+
     function total_de_presentes() {
         $sql = "SELECT COUNT(*) AS quantidade
             FROM individual
