@@ -73,6 +73,7 @@ if (count($_POST) > 0) {
                             $o_inscricao->tipo_pagamento = $tipo_pagamento;
                             $o_inscricao->status_transacao = $status_transacao;
                             $o_inscricao->transacao_id = $transaction_code;
+                            $o_inscricao->quem_registrou = "sistema";
 
                             if ($o_inscricao->salva())
                                 EnviarEmail::enviar("pagamento", "individual", $email, $nome);
@@ -119,6 +120,7 @@ if (count($_POST) > 0) {
                                 $o_inscricao->tipo_pagamento = $tipo_pagamento;
                                 $o_inscricao->status_transacao = $status_transacao;
                                 $o_inscricao->transacao_id = $transaction_code;
+                                $o_inscricao->quem_registrou = "sistema";
 
                                 if ($o_inscricao->salva())
                                     EnviarEmail::enviar("pagamento", "individual", $email_func, $nome_func);
