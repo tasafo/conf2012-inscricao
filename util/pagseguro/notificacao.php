@@ -62,22 +62,20 @@ if (count($_POST) > 0) {
                         $o_inscricao = new InscricaoDAO();
                         
                         if ($o_inscricao->busca($o_individual->id_inscricao)) {
-                            if (empty($o_inscricao->data_pagamento)) {
-                                $id_inscricao = $o_inscricao->id;
-                                        
-                                $o_inscricao = new InscricaoDAO();
-                                $o_inscricao->id = $id_inscricao;
-                                $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
-                                $o_inscricao->data_pagamento = $data_pagamento;
-                                $o_inscricao->data_compensacao = $data_compensacao;
-                                $o_inscricao->taxa = $valor_taxa;
-                                $o_inscricao->tipo_pagamento = $tipo_pagamento;
-                                $o_inscricao->status_transacao = $status_transacao;
-                                $o_inscricao->transacao_id = $transaction_code;
+                            $id_inscricao = $o_inscricao->id;
+                                    
+                            $o_inscricao = new InscricaoDAO();
+                            $o_inscricao->id = $id_inscricao;
+                            $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
+                            $o_inscricao->data_pagamento = $data_pagamento;
+                            $o_inscricao->data_compensacao = $data_compensacao;
+                            $o_inscricao->taxa = $valor_taxa;
+                            $o_inscricao->tipo_pagamento = $tipo_pagamento;
+                            $o_inscricao->status_transacao = $status_transacao;
+                            $o_inscricao->transacao_id = $transaction_code;
 
-                                if ($o_inscricao->salva())
-                                    EnviarEmail::enviar("pagamento", "individual", $email, $nome);
-                            }
+                            if ($o_inscricao->salva())
+                                EnviarEmail::enviar("pagamento", "individual", $email, $nome);
                         }
                     }
                 } elseif ($modo_pagamento == "E") { // Empresa
@@ -112,20 +110,18 @@ if (count($_POST) > 0) {
                                 
                                 $lista_funcionarios .= "$nome_func - $email_func<br><br>";
 
-                                if (empty($inscrito->data_pagamento)) {
-                                    $o_inscricao = new InscricaoDAO();
-                                    $o_inscricao->id = $inscrito->id;
-                                    $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
-                                    $o_inscricao->data_pagamento = $data_pagamento;
-                                    $o_inscricao->data_compensacao = $data_compensacao;
-                                    $o_inscricao->taxa = $taxa;
-                                    $o_inscricao->tipo_pagamento = $tipo_pagamento;
-                                    $o_inscricao->status_transacao = $status_transacao;
-                                    $o_inscricao->transacao_id = $transaction_code;
+                                $o_inscricao = new InscricaoDAO();
+                                $o_inscricao->id = $inscrito->id;
+                                $o_inscricao->data_criacao_transacao = $data_criacao_transacao;
+                                $o_inscricao->data_pagamento = $data_pagamento;
+                                $o_inscricao->data_compensacao = $data_compensacao;
+                                $o_inscricao->taxa = $taxa;
+                                $o_inscricao->tipo_pagamento = $tipo_pagamento;
+                                $o_inscricao->status_transacao = $status_transacao;
+                                $o_inscricao->transacao_id = $transaction_code;
 
-                                    if ($o_inscricao->salva())
-                                        EnviarEmail::enviar("pagamento", "individual", $email_func, $nome_func);
-                                }
+                                if ($o_inscricao->salva())
+                                    EnviarEmail::enviar("pagamento", "individual", $email_func, $nome_func);
                             }
                             
                             EnviarEmail::enviar("pagamento", "empresa", $email, $nome, 0, $lista_funcionarios);
