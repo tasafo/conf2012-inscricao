@@ -64,7 +64,7 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor + $a_confirmados_a_r
                 <tr style="color:red; font-weight:bold">
                     <td align="center"><?php echo $a_em_aberto[0]->quantidade ?></td>
                     <td>Em aberto</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
+                    <td>&nbsp;</td>
                 </tr>
                 <tr style="color:maroon; font-weight:bold">
                     <td align="center"><?php echo $a_cancelados[0]->quantidade ?></td>
