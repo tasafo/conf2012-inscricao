@@ -15,7 +15,7 @@ $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
 $a_total_saques = $o_saque->total_saques();
 $a_presentes = $o_inscricao->total_de_presentes();
 
-$subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]->valor + $a_confirmados_a_receber[0]->valor;
+$subtotal_confirmados = $a_confirmados_disponivel[0]->valor + $a_confirmados_a_receber[0]->valor;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -64,11 +64,11 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]
                 <tr style="color:red; font-weight:bold">
                     <td align="center"><?php echo $a_em_aberto[0]->quantidade ?></td>
                     <td>Em aberto</td>
-                    <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor) ?></td>
                 </tr>
                 <tr style="color:maroon; font-weight:bold">
                     <td align="center"><?php echo $a_cancelados[0]->quantidade ?></td>
-                    <td>Canceladas</td>
+                    <td>Cancelada(s)</td>
                     <td align="right"></td>
                 </tr>
                 <tr>
@@ -76,27 +76,27 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]
                 </tr>
                 <tr>
                     <td align="center"><?php echo $a_confirmados_disponivel[0]->quantidade ?></td>
-                    <td>Disponível</td>
+                    <td>Compensada(s)</td>
                     <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_disponivel[0]->valor) ?></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>Saques (<?php echo $a_total_saques[0]->total ?>)</td>
-                    <td align="right">- <?php echo Funcoes::formata_moeda_para_exibir($a_total_saques[0]->valor) ?></td>
                 </tr>
                 <tr>
                     <td align="center"><?php echo $a_confirmados_a_receber[0]->quantidade ?></td>
                     <td>A receber</td>
                     <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></td>
                 </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><?php echo $a_total_saques[0]->total ?> saque(s) realizado(s)</td>
+                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_total_saques[0]->valor) ?></td>
+                </tr>
                 <tr style="color:maroon">
                     <td align="center"><?php echo $a_cortesias[0]->quantidade ?></td>
-                    <td>Cortesias</td>
+                    <td>Cortesia(s)</td>
                     <td align="right"></td>
                 </tr>
                 <tr style="color:blue; font-weight:bold">
                     <td align="center"><?php echo $a_confirmados[0]->quantidade ?></td>
-                    <td>Subtotal</td>
+                    <td>No total de</td>
                     <td align="right">= <?php echo Funcoes::formata_moeda_para_exibir($subtotal_confirmados) ?></td>
                 </tr>
                 <tr style="color:navy; font-weight:bold">
@@ -104,13 +104,10 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor - $a_total_saques[0]
                     <td>Presentes</td>
                     <td>&nbsp;</td>
                 </tr>
-                <tr>
-                    <td colspan="3" style="color:green; font-weight: bold; text-align:center">Montante</td>
-                </tr>
                 <tr style="color:green; font-weight:bold">
                     <td align="center"><?php echo $a_em_aberto[0]->quantidade + $a_confirmados[0]->quantidade ?></td>
-                    <td>Total</td>
-                    <td align="right">= <?php echo Funcoes::formata_moeda_para_exibir($a_em_aberto[0]->valor + $subtotal_confirmados) ?></td>
+                    <td>Inscrito(s) no total</td>
+                    <td>&nbsp;</td>
                 </tr>
             </table>
         <?php
