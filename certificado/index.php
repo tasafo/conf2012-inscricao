@@ -75,6 +75,7 @@ if (isset($_POST['email'])) {
     <body>
         <div id="main_header">
             <div id="header">
+                <center><img src="topo.png" /></center>
                 <div id="texto">
                     <h4>Digite o e-mail que foi informado na sua inscrição para que o sistema possa emitir o certificado e enviá-lo.</h4>
                     <form id="form" name="form" action="index.php" method="post">
