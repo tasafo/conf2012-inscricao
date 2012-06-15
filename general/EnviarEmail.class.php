@@ -71,7 +71,7 @@ class EnviarEmail {
         }
 
         if ($motivo != "envio_certificado")
-            $texto .= "<br>Acesse nosso <a href='" . HOME_PAGE . "'>web site</a> ou siga o <a href='" . TWITTER_ENDERECO . "'>" . TWITTER_NOME . "</a> no Twitter para acompanhar as novidades do " . NOME_EVENTO . ".<br><br>";
+            $texto .= "<br>Acesse nosso <a href='" . HOME_PAGE . "'>web site</a> ou siga o <a href='" . TWITTER_ENDERECO . "'>" . TWITTER_NOME . "</a> no Twitter para acompanhar as not&iacute;cias sobre o " . NOME_EVENTO . ".<br><br>";
         
         $texto .= "<b>Organiza&ccedil;&atilde;o do " . NOME_EVENTO . "</b></body></html>";
 
