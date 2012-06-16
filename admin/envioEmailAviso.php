@@ -14,7 +14,11 @@ if ($_POST['inicio'] && $_POST['fim']) {
     $so_inadimplentes = false;
     if ($_POST['inadimplentes'] && $_POST['inadimplentes'] == "sim")
         $so_inadimplentes = true;
-        
+
+    $incluir_membros_inadimplentes = false;
+    if ($_POST['incluir_membros_inadimplentes'] && $_POST['incluir_membros_inadimplentes'] == "sim")
+        $incluir_membros_inadimplentes = true;
+
     $so_presentes = false;
     if ($_POST['presentes'] && $_POST['presentes'] == "sim")
         $so_presentes = true;
@@ -25,10 +29,10 @@ if ($_POST['inicio'] && $_POST['fim']) {
         
     $incluir_cancelados = false;
     if ($_POST['cancelados'] && $_POST['cancelados'] == "sim")
-        $incluir_cancelados = true;    
+        $incluir_cancelados = true;
     
     $o_inscritos = new InscricaoDAO();
-    $a_inscritos = $o_inscritos->inscritos_por_intervalo($inicio, $fim, $so_inadimplentes, $incluir_cancelados, $so_adimplentes, $so_presentes, $so_faltosos);
+    $a_inscritos = $o_inscritos->inscritos_por_intervalo($inicio, $fim, $so_inadimplentes, $incluir_cancelados, $so_adimplentes, $so_presentes, $so_faltosos, $incluir_membros_inadimplentes);
     
     if ($a_inscritos) {
         echo "<h2>Log de envio de e-mail's</h2></center>";
@@ -61,16 +65,27 @@ if ($_POST['inicio'] && $_POST['fim']) {
             <h2>Envio de email's</h2>
         </center>
         <form action="" method="post">
-            Texto:<br>
-            <textarea rows="15" cols="80" name="texto"></textarea><br><br>
-            <input type="checkbox" name="adimplentes" id="adimplentes" value="sim" />Enviar só para os adimplentes<br><br>
-            <input type="checkbox" name="inadimplentes" id="inadimplentes" value="sim" />Enviar só para os inadimplentes<br><br>
-            <input type="checkbox" name="presentes" id="presentes" value="sim" />Enviar só para os presentes no dia do evento<br><br>
-            <input type="checkbox" name="faltosos" id="faltosos" value="sim" />Enviar só para os faltosos<br><br>
-            <input type="checkbox" name="cancelados" id="cancelados" value="sim" />Enviar também para os cancelados<br><br>
-            Inicio: <input type="text" size="5" name="inicio" id="inicio" value=""><br><br>
-            Fim: <input type="text" size="5" name="fim" id="fim" value=""><br><br>
-            <input type="submit" name="submit" value="enviar">
+            <fieldset>
+                <legend><b>Texto</b> (<i>se ficar vazio, irá enviar o texto padrão de cobrança</i>)</legend>
+                <textarea rows="15" cols="80" name="texto"></textarea>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>Enviar somente para</b></legend>
+                <input type="checkbox" name="adimplentes" id="adimplentes" value="sim" />Os que confirmaram sua inscrição<br><br>
+                <input type="checkbox" name="inadimplentes" id="inadimplentes" value="sim" />Os que estão com inscrição em aberto - 
+                <input type="checkbox" name="incluir_membros_inadimplentes" id="incluir_membros_inadimplentes" value="sim" /><i>Incluir os membros da empresa / instituição</i><br><br>
+                <input type="checkbox" name="presentes" id="presentes" value="sim" />Os presentes no evento<br><br>
+                <input type="checkbox" name="faltosos" id="faltosos" value="sim" />Os faltosos no evento<br><br>
+                <input type="checkbox" name="cancelados" id="cancelados" value="sim" />Incluir os cancelados<br>
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend><b>Informe um intervalo baseado no id da pessoa</b></legend>
+                Inicio: <input type="text" size="5" name="inicio" id="inicio" value=""><br><br>
+                Fim: <input type="text" size="5" name="fim" id="fim" value=""><br>
+            </fieldset><br>
+            <input type="submit" name="submit" value="ENVIAR">
         </form>
     </body>
 </html>

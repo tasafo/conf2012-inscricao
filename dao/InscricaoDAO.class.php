@@ -44,8 +44,9 @@ class InscricaoDAO extends AbstractDAO {
         return $this->resultado_consulta($sql);
     }
 
-    function inscritos_por_intervalo($inicio, $fim, $inadimplentes = false, $incluir_cancelados = false, $adimplentes = false, $presentes = false, $faltosos = false) {
-        $filtro_inadimplentes = ($inadimplentes) ? "AND ins.data_pagamento IS NULL AND ins.id_empresa = 0" : "";
+    function inscritos_por_intervalo($inicio, $fim, $inadimplentes = false, $incluir_cancelados = false, $adimplentes = false, $presentes = false, $faltosos = false, $incluir_membros_inadimplentes = false) {
+        $filtro_inadimplentes = ($inadimplentes) ? "AND ins.data_pagamento IS NULL " : "";
+        $filtro_inadimplentes .= ($incluir_membros_inadimplentes) ? "" : "AND ins.id_empresa = 0";
         
         $filtro_cancelados = ($incluir_cancelados) ? "" : "AND ind.situacao = 'A'";
         
