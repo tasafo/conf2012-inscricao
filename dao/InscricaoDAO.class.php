@@ -51,9 +51,9 @@ class InscricaoDAO extends AbstractDAO {
         
         $filtro_adimplentes = ($adimplentes) ? "AND ins.data_pagamento IS NOT NULL" : "";
         
-        $filtro_presentes = ($presentes) ? "AND ind.presente = 'S'" : "";
+        $filtro_presentes = ($presentes) ? "AND ins.data_pagamento IS NOT NULL AND ind.presente = 'S'" : "";
         
-        $filtro_faltosos = ($faltosos) ? "AND ind.presente = 'N'" : "";
+        $filtro_faltosos = ($faltosos) ? "AND ins.data_pagamento IS NOT NULL AND ind.presente = 'N'" : "";
         
         $sql = "SELECT ind.* FROM individual ind
             JOIN inscricao ins ON (ind.id_inscricao = ins.id)
