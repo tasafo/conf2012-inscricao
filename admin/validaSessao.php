@@ -10,6 +10,7 @@ $a_menu = array(
     array('addEmployee', '', 'admin'),
     array('relatorioIndividual', 'Inscrições Individuais', 'admin'),
     array('relatorioEmpresas', 'Inscrições por Instituições', 'admin'),
+    array('../view/inscreverMembrosEmMassa', 'Inscrever membros em massa', 'admin'),
     array('relatorioInscritos', 'Listagem dos Inscritos Pagantes', 'admin, organizador'),
     array('relatorioFaturamentoIndividual', 'Faturamento de Inscrições Individuais', 'admin'),
     array('relatorioPresentes', 'Relatório de Presentes', 'admin, organizador'),
@@ -43,9 +44,11 @@ if (!$_SESSION['logado']) {
 ?>
 <table width="100%">
     <tr>
-        <td width="33%"><?php echo "<b style='color: blue'>Usuário:</b> " . $_SESSION['logado']['nome'] . " - " . $_SESSION['logado']['perfil'] ?></td>
-        <td width="33%" align="center"><a href="menu.php">Menu Principal</a></td>
-        <td width="33%" align="right"><a href="index.php">Sair</a></td>
+        <td width="33%">
+            <b style='color: blue'>Usuário: </b><?php echo  $_SESSION['logado']['nome'] . " - " . $_SESSION['logado']['perfil'] ?>
+        </td>
+        <td width="33%" align="center"><a href="../admin/menu.php">Menu Principal</a></td>
+        <td width="33%" align="right"><a href="../admin/index.php">Sair</a></td>
     </tr>
 </table>
 <hr>
