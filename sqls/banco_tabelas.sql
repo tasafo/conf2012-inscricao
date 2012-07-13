@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS saque (
   id int(11) NOT NULL AUTO_INCREMENT,
   data_lancamento timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   data_saque DATE NOT NULL ,
-  valor decimal(10,0) NOT NULL DEFAULT '0',
+  valor decimal(10,2) NOT NULL DEFAULT '0',
   quem_registrou VARCHAR(50) NULL ,
   PRIMARY KEY (`id`)
 )

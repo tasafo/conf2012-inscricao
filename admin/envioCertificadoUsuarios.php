@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="utf-8">
-        <title>Organizadores e Palestrantes</title>
-        <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
-        <link href="css/admin.css" rel="stylesheet" />
-        <script>
-        function operacoes(operacao, id_usuario) {
-          if (operacao == "excluir") {
-            decisao = confirm("Confirma a exclusão do usuário?");
-            if (!decisao)
-              return false;
-          }
-          window.location="envioCertificadoUsuarios.php?op=" + operacao + "&id_usuario=" + id_usuario;
-        }
-        </script>
-    </head>
-    <body onload="document.formCadastro.nome_usuario.focus();">
 <?php
 require 'validaSessao.php';
 require_once '../general/autoload.php';
@@ -159,6 +140,25 @@ if (!isset($_POST['id'])) {
   exit;
 }
 ?>
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+        <title>Organizadores e Palestrantes</title>
+        <script type="text/javascript" src="../view/js/jquery/jquery.js" ></script>
+        <link href="css/admin.css" rel="stylesheet" />
+        <script>
+        function operacoes(operacao, id_usuario) {
+          if (operacao == "excluir") {
+            decisao = confirm("Confirma a exclusão do usuário?");
+            if (!decisao)
+              return false;
+          }
+          window.location="envioCertificadoUsuarios.php?op=" + operacao + "&id_usuario=" + id_usuario;
+        }
+        </script>
+    </head>
+    <body onload="document.formCadastro.nome_usuario.focus();">
         <center>
             <h2>Organizadores e Palestrantes</h2>
         </center>
