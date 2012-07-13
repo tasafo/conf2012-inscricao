@@ -4,8 +4,8 @@ $(document).ready(function($){
 		validar();
 	});
 
-    $j("#permito_divulgacao").click(function() {
-        $j("#permito_divulgacao").val($j(this).attr("checked") ? 'S' : 'N');
+    $("#permito_divulgacao").click(function() {
+        $("#permito_divulgacao").val($(this).attr("checked") ? 'S' : 'N');
     });
     
 	$("#nome").focus();
