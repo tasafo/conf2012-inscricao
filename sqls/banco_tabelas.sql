@@ -70,12 +70,14 @@ CREATE TABLE IF NOT EXISTS usuario (
 )
 ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
 
-CREATE TABLE IF NOT EXISTS saque (
+CREATE TABLE IF NOT EXISTS receita_despesa (
   id int(11) NOT NULL AUTO_INCREMENT,
   data_lancamento timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  data_saque DATE NOT NULL ,
-  valor decimal(10,2) NOT NULL DEFAULT '0',
-  quem_registrou VARCHAR(50) NULL ,
-  PRIMARY KEY (`id`)
-)
-ENGINE = InnoDB DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci AUTO_INCREMENT = 1;
+  data_operacao date NOT NULL,
+  tipo char(1) NOT NULL,
+  valor decimal(10,2) NOT NULL DEFAULT '0.00',
+  responsavel varchar(50) NOT NULL,
+  descricao varchar(50) NOT NULL,
+  quem_registrou varchar(50) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

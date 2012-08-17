@@ -21,7 +21,7 @@ $a_menu = array(
     array('envioEmailAviso', 'Enviar avisos por e-mail', 'admin'),
     array('envioCertificadoUsuarios', 'Organizadores e Palestrantes', 'admin'),
     array('registrarPresencaInscrito', 'Registrar Presença do Inscrito', 'admin, organizador'),
-    array('saques', 'Saques', 'admin, organizador')
+    array('receitasEDespesas', 'Receitas e Despesas', 'admin')
 );
 
 if (!$_SESSION['logado']) {

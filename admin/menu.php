@@ -3,7 +3,6 @@ require 'validaSessao.php';
 require_once '../general/autoload.php';
 
 $o_inscricao = new InscricaoDAO();
-$o_saque = new SaqueDAO();
 
 $a_em_aberto = $o_inscricao->valor_total_inscritos("A");
 $a_confirmados = $o_inscricao->valor_total_inscritos("C");
@@ -12,7 +11,6 @@ $a_confirmados_disponivel = $o_inscricao->valor_total_inscritos("CD");
 $a_cortesias = $o_inscricao->valor_total_inscritos("CO");
 $a_cancelados = $o_inscricao->valor_total_inscritos("CA");
 $a_incritos_instituicao = $o_inscricao->total_de_inscritos_por_instituicao();
-$a_total_saques = $o_saque->total_saques();
 $a_presentes = $o_inscricao->total_de_presentes();
 
 $subtotal_confirmados = $a_confirmados_disponivel[0]->valor + $a_confirmados_a_receber[0]->valor;
@@ -83,11 +81,6 @@ $subtotal_confirmados = $a_confirmados_disponivel[0]->valor + $a_confirmados_a_r
                     <td align="center"><?php echo $a_confirmados_a_receber[0]->quantidade ?></td>
                     <td>A receber</td>
                     <td align="right">+ <?php echo Funcoes::formata_moeda_para_exibir($a_confirmados_a_receber[0]->valor) ?></td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                    <td><?php echo $a_total_saques[0]->total ?> saque(s) realizado(s)</td>
-                    <td align="right"><?php echo Funcoes::formata_moeda_para_exibir($a_total_saques[0]->valor) ?></td>
                 </tr>
                 <tr style="color:maroon">
                     <td align="center"><?php echo $a_cortesias[0]->quantidade ?></td>
