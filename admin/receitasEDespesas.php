@@ -36,7 +36,7 @@ if (isset($_POST['data_operacao']) &&
 }
 
 $o_receita_despesa = new ReceitaDespesaDAO();
-$a_receitas_despesas = $o_receita_despesa->busca();
+$a_receitas_despesas = $o_receita_despesa->busca(null, "data_operacao");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
